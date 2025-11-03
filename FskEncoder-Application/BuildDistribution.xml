@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="build distribution" name="Build Distribution">
-     
+
+	<property name="app.root" location="H:/GitRepository/FskEncoder-Application/FskEncoder-Application"/>
+	<property name="ext.root" location="H:/GitRepository/FskEncoder-Extensions/FskEncoder-Extensions"/>
+	<property name="dir.dist"	value="H:/GitSandbox/FskEncoder/dist" />
+	<property name="target"		value="FskEncoder-all-dist.zip" />
+
+	
+	<include file="${app.root}/ApplicationBuildSupport.xml" />
+	<include file="${ext.root}/ExtensionsBuildSupport.xml" />
+
+	
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 	  <classpath>
 	    <pathelement location="C:/Users/Stefan/.p2/pool/plugins/ant-contrib-1.0b3-bin/ant-contrib/ant-contrib-1.0b3.jar"/>
 	  </classpath>
 	</taskdef>
 	
-	<include file="BuildSupport.xml" />
 
 	<target name="build distribution" description="">
 		
 		<antcall target="clean" />
-		<antcall target="bild all" />
 		<antcall target="pack distri" />
 		
 	</target>
@@ -32,48 +40,39 @@
 	</target>
 	
 	
+	<target name="pack distri" depends="bild all" description="Packes all files and folders in a ZIP container. Depends on 'build all'">
+		
+		<delete file="${dir.dist}/${target}" failonerror="no" />
+		
+		<zip destfile="${dir.dist}/${target}"
+			basedir="${dir.dist}"
+			excludes="*.zip cfg/Empty.properties bin/FskEncoder.bat"
+		/>
+		
+	</target>
+	
+	
 	<target name="bild all" description="Build the main application and all extensions" >
 		
 		<tstamp>
 			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
 		</tstamp>
 
-		<echo message="${current.time}" />      
+		<echo message="Build Application: ${current.time}" />      
 		
-		<for param="file">
-			
-			<path>
-				<fileset dir="./build" includes="*.xml" excludes="*Template.*"/>
-			</path>
+		<ant antfile="${app.root}/BuildApplication.xml" target="Build Application"/>
+		
+		
+		<tstamp>
+			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
+		</tstamp>
 
-			<sequential>
-			
-				<local name="name"/>
-				<basename file="@{file}" property="name" />
-				
-				<echo message=" Calling 'build all' of @{file}"/>
-				<ant antfile="@{file}" target="build all"/>
-				
-			</sequential>
-			
-		</for>     
+		<echo message="Build Extensions: ${current.time}" />      
+		
+		<ant antfile="${ext.root}/BuildExtensions.xml" target="Build Extensions"/>
 
 	</target>
 
-	
-	<target name="pack distri" depends="bild all" description="Packes all files and folders in a ZIP container. Depends on 'build all'">
-		
-		<property name="target" value="${projectname}-dist" />
-	
-		<delete file="${dir.dist}/${target}.zip" failonerror="no" />
-		
-		<zip destfile="${dir.dist}/${target}.zip"
-			basedir="${dir.dist}"
-			excludes="*.zip"
-		/>
-		
-	</target>
-	
 	
 	<macrodef name="renewDir">
 		<attribute name="candidate"/>

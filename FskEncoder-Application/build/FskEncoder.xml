@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="build all" name="FskEncoder">
 
-	<include file="../BuildSupport.xml" />
+	<include file="../ApplicationBuildSupport.xml" />
 	
 	<property name="targetName" 		value="${ant.project.name}" />
 	
-	<property name="dir.scriptsRepo"	value="${dir.defaultsRepo}/${targetName}/scripts" />
-	<property name="dir.configRepo"		value="${dir.defaultsRepo}/${targetName}/cfg" />
+	<property name="app.dir.scriptsRepo"	value="${app.dir.defaultsRepo}/${targetName}/scripts" />
+	<property name="app.dir.configRepo"		value="${app.dir.defaultsRepo}/${targetName}/cfg" />
 
 	<property name="stream" value="0"/>
 	
@@ -23,17 +23,18 @@
 		
 		<antcall target="${targetName}" />				
 		<antcall target="copy config" />
-		<antcall target="pack distri" />
+		<!-- antcall target="pack application" / -->
 
 	</target>
 	
 	
 	<target name="FskEncoder">	
 		
-		<replaceFile sourcepath="${dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}.bat" />
+		<replaceFile sourcepath="${app.dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}.bat" />
+		<replaceFile sourcepath="${app.dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}-all.bat" />
 
 		<mkManifest 
-			location="${dir.defaultsRepo}/${targetName}" 
+			location="${app.dir.defaultsRepo}/${targetName}" 
 			version="${version}" 
 			timestamp="${current.time}" 
 		/>
@@ -41,36 +42,37 @@
 		<delete file="${dir.dist}/${targetName}.jar" />
 		
         <jar destfile="${dir.dist}/bin/${targetName}.jar"
-			basedir="${dir.classesRoot}"
+			basedir="${app.dir.classesRoot}"
 			excludes="source/bin/**/* source/ihx/**/* target/**/*"
-			manifest="${dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
     		>
         	
         </jar>
 
-		<replaceLibrary sourcepath="${dir.mavenRepo}/com/miglayout/miglayout/3.7.4/"				fileName="miglayout-3.7.4.jar"/>
-		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
-		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
-		<replaceLibrary sourcepath="${dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
-		<replaceLibrary sourcepath="${dir.mavenRepo}/io/github/classgraph/classgraph/4.8.184/"		fileName="classgraph-4.8.184.jar"/>
+		<replaceLibrary sourcepath="${app.dir.mavenRepo}/com/miglayout/miglayout/3.7.4/"				fileName="miglayout-3.7.4.jar"/>
+		<replaceLibrary sourcepath="${app.dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
+		<replaceLibrary sourcepath="${app.dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
+		<replaceLibrary sourcepath="${app.dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
+		<replaceLibrary sourcepath="${app.dir.mavenRepo}/io/github/classgraph/classgraph/4.8.184/"		fileName="classgraph-4.8.184.jar"/>
 
 	</target>
 	
 	<target name="copy config" >
 		
-		<replaceConfig sourcePath="${dir.configRepo}" fileName="Extension.properties" />
-		<replaceConfig sourcePath="${dir.configRepo}" fileName="FskEncoder.properties" />
+		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Empty.properties" />
+		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Extension.properties" />
+		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="FskEncoder.properties" />
 
 	</target>
 	
 	
-	<target name="pack distri">
+	<target name="pack application">
 	
-		<delete file="${dir.dist}/${targetName}.zip" />
+		<delete file="${dir.dist}/${targetName}.zip" failonerror="no" />
 		
 		<zip destfile="${dir.dist}/${targetName}.zip"
 			basedir="${dir.dist}"
-			includes="bin/* cfg/* lib/"
+			includes="bin/* cfg/Empty.properties lib/"
 		/>
 		
 	</target>

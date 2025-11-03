@@ -27,11 +27,10 @@ set CLASS_PATH=%CLASS_PATH%;../lib/miglayout-3.7.4.jar;
 rem
 rem   E X T E N S I O N    s e c t i o n
 rem
-rem
-rem insert your extensions here
-rem
-rem
-
+set CLASS_PATH=%CLASS_PATH%;../extensions/BinReaderExtension.jar;
+set CLASS_PATH=%CLASS_PATH%;../extensions/Ihx8ReaderExtension.jar;
+set CLASS_PATH=%CLASS_PATH%;../extensions/Mpf1Extension.jar;
+set CLASS_PATH=%CLASS_PATH%;../extensions/Z80TrainerExtension.jar;
 
 set L4J_PATH=../cfg/log4j2.xml
 set L4J_CONF="log4j.configurationFile=%L4J_PATH%"

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="Build Application" name="Build Application">
+    
+	
+	<property name="app.root" location="H:/GitRepository/FskEncoder-Application/FskEncoder-Application"/>
+	<property name="app.target" value="FskEncoder-app-dist.zip" />
+
+	
+	<include file="${app.root}/ApplicationBuildSupport.xml" />
+
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="C:/Users/Stefan/.p2/pool/plugins/ant-contrib-1.0b3-bin/ant-contrib/ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
+	
+
+	<target name="Build Application" description="">
+		
+		<antcall target="pack application" />
+		
+	</target>
+	
+	
+	<target name="clean application" description="Deletes ALL files and folders in the 'dist' directory" >	
+	</target>
+	
+	
+	<target name="pack application" depends="bild all application" description="Packes all files and folders in a ZIP container. Depends on 'build all'">
+		
+		<delete file="${dir.dist}/${app.target}" failonerror="no" />
+		
+		<zip destfile="${dir.dist}/${app.target}"
+			basedir="${dir.dist}"
+			excludes="*.zip cfg/FskEncoder.properties cfg/Extension.properties bin/FskEncoder-all.bat bin/*Extension.bat"
+		/>
+		
+	</target>
+	
+	
+	<target name="bild all application" description="Build the main application" >
+		
+		<tstamp>
+			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
+		</tstamp>
+
+		<echo message="${current.time}" />      
+		
+		<for param="file">
+			
+			<path>
+				<fileset dir="${app.root}/build" includes="*.xml" excludes="*Template.*"/>
+			</path>
+
+			<sequential>
+			
+				<local name="name"/>
+				<basename file="@{file}" property="name" />
+				
+				<echo message=" Calling 'build all' of @{file}"/>
+				<ant antfile="@{file}" target="build all"/>
+				
+			</sequential>
+			
+		</for>     
+
+	</target>
+	
+	
+</project>
