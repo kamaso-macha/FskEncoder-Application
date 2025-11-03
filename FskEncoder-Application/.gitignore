@@ -1,0 +1,19 @@
+
+# include later when most documentation is done!
+**/audio/peaks/
+*.png
+*.rpp-bak
+/_attic_/
+/cfg/
+/contribute/
+/dist/
+/doc/_old_/
+/doc/design/
+/log-local/
+/log/
+/target/
+/testresources/
+MANIFEST.MF
+org.eclipse.*
+package-info.java
+/bin/

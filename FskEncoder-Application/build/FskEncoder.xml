@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="build all" name="FskEncoder">
+
+	<include file="../BuildSupport.xml" />
+	
+	<property name="targetName" 		value="${ant.project.name}" />
+	
+	<property name="dir.scriptsRepo"	value="${dir.defaultsRepo}/${targetName}/scripts" />
+	<property name="dir.configRepo"		value="${dir.defaultsRepo}/${targetName}/cfg" />
+
+	<property name="stream" value="0"/>
+	
+	<property name="version" value="${main.line}.${stream}"/>
+	
+	
+	<target name="build all">
+		
+		<tstamp>
+			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
+		</tstamp>
+
+		<echo message="${current.time}" />      
+		
+		<antcall target="${targetName}" />				
+		<antcall target="copy config" />
+		<antcall target="pack distri" />
+
+	</target>
+	
+	
+	<target name="FskEncoder">	
+		
+		<replaceFile sourcepath="${dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}.bat" />
+
+		<mkManifest 
+			location="${dir.defaultsRepo}/${targetName}" 
+			version="${version}" 
+			timestamp="${current.time}" 
+		/>
+		
+		<delete file="${dir.dist}/${targetName}.jar" />
+		
+        <jar destfile="${dir.dist}/bin/${targetName}.jar"
+			basedir="${dir.classesRoot}"
+			excludes="source/bin/**/* source/ihx/**/* target/**/*"
+			manifest="${dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+    		>
+        	
+        </jar>
+
+		<replaceLibrary sourcepath="${dir.mavenRepo}/com/miglayout/miglayout/3.7.4/"				fileName="miglayout-3.7.4.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/io/github/classgraph/classgraph/4.8.184/"		fileName="classgraph-4.8.184.jar"/>
+
+	</target>
+	
+	<target name="copy config" >
+		
+		<replaceConfig sourcePath="${dir.configRepo}" fileName="Extension.properties" />
+		<replaceConfig sourcePath="${dir.configRepo}" fileName="FskEncoder.properties" />
+
+	</target>
+	
+	
+	<target name="pack distri">
+	
+		<delete file="${dir.dist}/${targetName}.zip" />
+		
+		<zip destfile="${dir.dist}/${targetName}.zip"
+			basedir="${dir.dist}"
+			includes="bin/* cfg/* lib/"
+		/>
+		
+	</target>
+	
+	
+</project>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="warn">
+
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}: %L - %msg%n"/>
+        </Console>
+        
+	    <File name="DebugFile" fileName="T:/log/FskEncoder-Debug.log" append="false">
+	      <PatternLayout>
+	        <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}: %L - %msg%n</Pattern>
+	      </PatternLayout>
+	    </File>
+
+    </Appenders>
+
+    <Loggers>
+       
+        <Logger name="application" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+
+        <Logger name="control" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+
+        <Logger name="control.BackgroundExecutor" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="control.BackgroundTask" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="control.WorkflowEngine" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="control.gui.CompileAndUploadAction" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="control.gui.InputFileController" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+
+        <Logger name="control.gui.MainWindowController" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="control.gui.OutputDeviceController" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="control.gui.StatusBarUpdate" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="encoder" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+
+        <Logger name="model" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="model.FskUploaderModel" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="model.MemoryBlockDescription" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+
+        <Logger name="protocol" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="sound" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="sound.EnlistOutputDevices" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="source" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+         <Logger name="source.MemoryRegionBuilder" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="source.bin" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="source.ihx" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="source.ihx.x8" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+         <Logger name="target" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="view" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Logger name="encoder" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+         <Logger name="target" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
+        <Root level="all">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Root>
+        
+    </Loggers>
+    
+</Configuration>
