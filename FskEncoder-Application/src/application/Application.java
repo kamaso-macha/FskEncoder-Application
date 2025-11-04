@@ -210,8 +210,6 @@ public class Application {
 			}
 		});
 		
-		System.exit(ExitCodes.EOK);
-		
 	} // main(...)
 	
 	

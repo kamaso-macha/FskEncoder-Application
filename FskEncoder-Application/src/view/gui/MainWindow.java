@@ -50,6 +50,7 @@ import javax.swing.JSeparator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import application.ExitCodes;
 import control.gui.InputFileController;
 import control.gui.MainWindowController;
 import control.gui.OutputDeviceController;
@@ -244,8 +245,8 @@ public class MainWindow extends JFrame {
 			
 		}
 		
-		System.exit(0);
-		
+		System.exit(ExitCodes.EOK);
+				
 	} // doExit()
 
 

@@ -77,7 +77,7 @@ public class ApplicationResources {
 	
 	
 	public static final String EXTENSION_PROPERTY_FILE() { logger.info("EXTENSION_PROPERTY_FILE()");
-		return path + "/Extension.properties";  }
+		return path + "/Plugin.properties";  }
 
 	
 	
