@@ -44,9 +44,17 @@
 		
 		<delete file="${dir.dist}/${target}" failonerror="no" />
 		
+		<move 
+			file="${dir.dist}/bin/FskEncoder-all.bat" 
+			tofile="${dir.dist}/bin/FskEncoder.bat" 
+			overwrite="yes" 
+			failonerror="no" 
+			verbose="true"
+		/>
+		
 		<zip destfile="${dir.dist}/${target}"
 			basedir="${dir.dist}"
-			excludes="*.zip cfg/Empty.properties bin/FskEncoder.bat"
+			excludes="*.zip cfg/Empty.properties cfg/*Extension.properties bin/*Extension.bat"
 		/>
 		
 	</target>

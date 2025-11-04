@@ -53,15 +53,16 @@
 		<replaceLibrary sourcepath="${app.dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
 		<replaceLibrary sourcepath="${app.dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
 		<replaceLibrary sourcepath="${app.dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
-		<replaceLibrary sourcepath="${app.dir.mavenRepo}/io/github/classgraph/classgraph/4.8.184/"		fileName="classgraph-4.8.184.jar"/>
+		<!-- replaceLibrary sourcepath="${app.dir.mavenRepo}/io/github/classgraph/classgraph/4.8.184/"		fileName="classgraph-4.8.184.jar"/ -->
 
 	</target>
 	
 	<target name="copy config" >
 		
 		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Empty.properties" />
-		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Extension.properties" />
+		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Plugin.properties" />
 		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="FskEncoder.properties" />
+		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="log4j2.xml" />
 
 	</target>
 	

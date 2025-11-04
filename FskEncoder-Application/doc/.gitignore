@@ -1,0 +1,12 @@
+**/audio/peaks/
+*.png
+*.rpp-bak
+
+*.aux
+*.bbl
+*.blg
+*.lof
+*.synctex
+*.toc
+*.pdf
+*.log

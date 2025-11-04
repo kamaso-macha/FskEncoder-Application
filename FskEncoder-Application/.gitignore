@@ -1,8 +1,6 @@
 
 # include later when most documentation is done!
-**/audio/peaks/
-*.png
-*.rpp-bak
+
 /_attic_/
 /cfg/
 /contribute/
