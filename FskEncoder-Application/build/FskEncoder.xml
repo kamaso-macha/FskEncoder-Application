@@ -95,6 +95,7 @@
 	<target name="Extension jar">
 		
 		<property name="extensionName" value="${targetName}Extension.jar" />
+		<property name="dir.extension" value="${app.dir.projectRoot}/target/tmp" />
 	
 		<mkManifest 
 			location="${app.dir.defaultsRepo}/${targetName}" 
@@ -102,11 +103,16 @@
 			timestamp="${current.time}" 
 		/>
 		
-		<delete file="${dir.dist}/${extensionName}" />
+		<delete file="${dir.dist}/${extensionName}" failonerror="no" />
+		
+		<delete dir="${dir.extension}" failonerror="no" />
+		<mkdir dir="${dir.extension}" />
+		
+		<copydir src="${app.dir.classesRoot}/extension" dest="${dir.extension}/extension" />
+		<copydir src="${app.dir.sourceRoot}/extension"  dest="${dir.extension}/extension" />
 		
         <jar destfile="${dir.dist}/bin/${extensionName}"
-			basedir="${app.dir.classesRoot}"
-			includes="extension/**"
+			basedir="${dir.extension}"
 			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
     		>
         	

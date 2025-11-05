@@ -5,6 +5,7 @@
 	<property name="dir.dist"				value="H:/GitSandbox/FskEncoder/dist" />
 
 	<property name="app.dir.classesRoot"	value="${app.dir.projectRoot}/target/classes"/>
+	<property name="app.dir.sourceRoot"		value="${app.dir.projectRoot}/src"/>
 	<property name="app.dir.mavenRepo"		value="C:/Users/Stefan/.m2/repository" />
 	<property name="app.dir.defaultsRepo"	value="${app.dir.projectRoot}/defaults" />
 	<property name="app.dir.extensions"		value="${dir.dist}/extensions" />
