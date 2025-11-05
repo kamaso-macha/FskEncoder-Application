@@ -23,6 +23,9 @@
 		
 		<antcall target="${targetName}" />				
 		<antcall target="copy config" />
+
+		<antcall target="Extension jar" />
+
 		<!-- antcall target="pack application" / -->
 
 	</target>
@@ -44,6 +47,16 @@
         <jar destfile="${dir.dist}/bin/${targetName}.jar"
 			basedir="${app.dir.classesRoot}"
 			excludes="source/bin/**/* source/ihx/**/* target/**/*"
+			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+    		>
+        	
+        </jar>
+
+		<delete file="${dir.dist}/${targetName}Extension.jar" />
+		
+        <jar destfile="${dir.dist}/bin/${targetName}Extension.jar"
+			basedir="${app.dir.classesRoot}"
+			includes="extension/**"
 			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
     		>
         	
@@ -76,6 +89,29 @@
 			includes="bin/* cfg/Empty.properties lib/"
 		/>
 		
+	</target>
+	
+	
+	<target name="Extension jar">
+		
+		<property name="extensionName" value="${targetName}Extension.jar" />
+	
+		<mkManifest 
+			location="${app.dir.defaultsRepo}/${targetName}" 
+			version="${version}" 
+			timestamp="${current.time}" 
+		/>
+		
+		<delete file="${dir.dist}/${extensionName}" />
+		
+        <jar destfile="${dir.dist}/bin/${extensionName}"
+			basedir="${app.dir.classesRoot}"
+			includes="extension/**"
+			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+    		>
+        	
+        </jar>
+
 	</target>
 	
 	
