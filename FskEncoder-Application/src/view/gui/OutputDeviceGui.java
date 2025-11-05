@@ -81,7 +81,7 @@ public class OutputDeviceGui extends JPanel {
 	protected JSlider slOutputVolume;
 	protected JTextField txtOutputVolume;
 	
-	InputVerifier txtOutputVolumeVerifier;
+	protected InputVerifier txtOutputVolumeVerifier;
 
 
 	

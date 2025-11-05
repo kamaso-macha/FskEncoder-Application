@@ -47,6 +47,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import control.WorkflowEngine;
+import model.InputFileControllerModel;
 import view.gui.InputFileLoadGui;
 import view.gui.InputFileSelectionGui;
 
@@ -76,7 +77,7 @@ public class InputFileController implements ActionListener {
 	private Logger logger = LogManager.getLogger(InputFileController.class.getName());
 
 	private WorkflowEngine workflowEngine;
-	model.InputFileControllerModel model;
+	private InputFileControllerModel model;
 	
 	private InputFileSelectionGui inputFileSelectionPanel;
 	private InputFileLoadGui inputFileLoadPanel;
@@ -186,7 +187,7 @@ public class InputFileController implements ActionListener {
 
         FileNameExtensionFilter filter = workflowEngine.getFileNameExtensionFilter();
 
-        final JFileChooser chooser = new JFileChooser("Verzeichnis wählen");
+        final JFileChooser chooser = new JFileChooser("Verzeichnis wï¿½hlen");
         chooser.setFileFilter(filter);
         chooser.setDialogType(JFileChooser.OPEN_DIALOG);
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
