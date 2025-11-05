@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>160</y>
+      <w>240</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>/Record/
+--
+# dataBuffer: byte[]
+# offset: int
+# recordNumber: int
+--
++ Record(int)
++ getData(): byte[]
++ getOffset(): long
++ getRecordNumber(): int
+/# parseContent(String)/
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>130</y>
+      <w>240</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>/Lexer&lt;T&gt;/
+--
+# constructor: Constructor&lt;?&gt;
+# reader: BufferedReader
+# recordIndex: int
+# t: T
+--
+ + Lexer(Constructor&lt;?&gt;)
+ + getRecord(): T
+ + setFile(String): void
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>130</y>
+      <w>300</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>/MemoryRegionBuilder/
+--
+# eofFlag : boolean
+# memoryMap: ExtendableMemory
+# memoryRegion: MemoryRegion
+# startAddress: long
+--
++ MemoryRegionBuilder(ExtendableMemory)
+/+ append(DataRecord): void /
++ clear(): void
+# endRegion(): void
+# extendRegion(DataRecord): void
+# newRegion(DataRecord): void
++ toString(): String
+# unpackData(DataRecord): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>660</x>
+      <y>230</y>
+      <w>160</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>DataRecord +
+--
+getData(): byte[]
+getRecordNumber(): int
+getOffset(): long
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>240</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>980</x>
+      <y>500</y>
+      <w>220</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>model.
+ExtendableMemory
+--
+addRegion(MemoryRegion): void
+
+lt=.
+bg=#F0F0F0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>360</y>
+      <w>30</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>240</y>
+      <w>190</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>450</y>
+      <w>180</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/ReaderException/
+--
+
+--
++ ReaderException()
++ ReaderException(String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>590</y>
+      <w>180</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>java.lang.
+Exception
+--
+...
+--
++ Exception()
++ Exception(String)
+
+lt=.
+bg=#F0F0F0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>530</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>450</y>
+      <w>380</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>/ReaderBase/
+--
+# filter : FileNameExtensionFilter
+# memoryMap : MemoryMap
+# operationStatus : String
+# sourceFileName : String
+--
++ ReaderBase(MemoryMap)
++ getFileNameExtensionFilter(): FileNameExtensionFilter
++ getOperationStatus(): String
+/+ loadFile(): boolean/
++ setFilename(String): void
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>170</x>
+      <y>700</y>
+      <w>380</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Reader +
+--
++ getFileNameExtensionFilter(): FileNameExtensionFilter
++ getOperationStatus(): String
++ loadFile(): boolean
++ setFilename(String(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>640</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>360</y>
+      <w>230</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;210.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1270</x>
+      <y>510</y>
+      <w>220</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>model.
+MemoryRegion
+--
+...
+--
+...
+
+lt=.
+bg=#F0F0F0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1330</x>
+      <y>720</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+extension.source</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

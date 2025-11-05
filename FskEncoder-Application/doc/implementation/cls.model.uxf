@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1161</x>
+      <y>504</y>
+      <w>153</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+model</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>657</x>
+      <y>117</y>
+      <w>306</w>
+      <h>414</h>
+    </coordinates>
+    <panel_attributes>FskUploaderModel
+--
+_+ NOT_DEFINED: String_
+_# AUTOSAVE_FLAG: String_
+_# DEFAULT_PROPERTY_FILE: String_
+_# EXTENSION_PROPERTY_FILE: String_
+_# PTY_CURRENT_LOCATION_X: String_
+_# PTY_CURRENT_LOCATION_Y: String_
+_# PTY_DEFAULT_DIRECTORY: String_
+_# PTY_OUTPUT_DEVICE: String_
+_# PTY_OUTPUT_VOLUME: String_
+_# PTY_TARGET_SYSTEM: String_
+
+# defaultProperties: Properties
+# extensionProperties: Properties
+--
+ + FskUploaderModel(): 
+ + getCurrentPosition(): Point
+^+ getDefaultDirectory(): String
+ # getKeyByValue(String,String, Properties ): String
+^+ getOutputDeviceName(): String
+^+ getTargetSystemName(): String
+ + getTargetSystemProviderClassName(String): String
+ # loadProperties(): void
+^+ setCurrentPosition(Point): void
+^+ setDefaultDirectory(String): void
+ + setTargetSystemName(String): void
+^+ saveSetings(): void
+^+ getAutosaveFlag(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>351</x>
+      <y>675</y>
+      <w>198</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>InputFileControllerModel
+--
+getDefaultDirectory(): String
+setDefaultDirectory(String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>567</x>
+      <y>675</y>
+      <w>180</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>MainWindowControllerModel
+--
++ getAutosaveFlag()
++ getCurrentPosition()
++ getTargetSystemName
++ saveSetings()
++ setAutosaveFlag(Boolean)
++ setCurrentPosition(Point)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>765</x>
+      <y>675</y>
+      <w>216</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>OutputDeviceControllerModel
+--
+getOutputDeviceName(): String
+setOutputDeviceName(String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>999</x>
+      <y>675</y>
+      <w>216</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>TargetSystemSelectionModel
+--
+getTargetSystemName(): String
+getTargetSystemNames(): String[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>441</x>
+      <y>522</y>
+      <w>279</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;180.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>522</y>
+      <w>117</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;180.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>819</x>
+      <y>522</y>
+      <w>72</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>60.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>918</x>
+      <y>522</y>
+      <w>207</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>210.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

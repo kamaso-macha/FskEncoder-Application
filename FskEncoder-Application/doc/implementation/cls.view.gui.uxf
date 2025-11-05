@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1350</x>
+      <y>918</y>
+      <w>102</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+sound</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>204</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>78</y>
+      <w>156</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>StatusBarGui
+--
+# controller : StatusBarUpdate
+... (GUI elements)
+--
+ + StatusBarGui(StatusBarUpdate)
+ # createLayout(): void
+ # createComponents(): void
+ + setTxtStatusMessage(String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>840</x>
+      <y>96</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+StatusBarUpdate
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>114</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>192</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1008</x>
+      <y>78</y>
+      <w>180</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>OutputDeviceGui
+--
+# controller : OutputDeviceController
+... (GUI elements)
+--
+ + OutputDeviceGui(OutputDeviceController)
+ # createLayout(): void
+ # createComponents(): void
+ + getSlOutputVolume()
+ + getTxtOutputVolume()
+ + setSlOutputVolume(int)
+ + setTxtOutputDevice(String)
+ + setTxtOutputVolume(int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1038</x>
+      <y>234</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1242</x>
+      <y>78</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+OutputDeviceControlle
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>162</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1182</x>
+      <y>96</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>78</y>
+      <w>234</w>
+      <h>348</h>
+    </coordinates>
+    <panel_attributes>MainWindow
+--
+# controller : MainWindowController
+- readerExtensionPanel : JPanel
+- targetExtensionPanel : JPanel
+... (GUI elements)
+--
+ + MainWindow(MainWindowController)
+ # createMenuBar()
+ - createExitListener()
+ - createMainFrame()
+ # doExit()
+ # doSaveSettings()
+ + getAutosaveFlag()
+ + getMainPanel()
+ + setReaderExtensionPanel(JPanel)
+ + setTargetExtensionPanel(JPanel)
+ + setAutosaveFlag(boolean)
+ + setExtensionPanels()
+ + setMnuTargetSystemController(TargetSystemSelection)
+ + setMnuOutputDeviceController(OutputDeviceController)
+ # setLocationOnscreen()
+ + setMnuDefaultPathController(InputFileController)
+ + getAutosaveMode()
+ 
+{innerclass
+java.awt.event.
+ActionListener
+--
+
+--
+^+ actionPerformed(ActionEvent): void
+innerclass}
+ 
+{innerclass
+java.awt.event.
+WindowAdapter
+--
+
+--
+^+ windowClosing(WindowEvent)
+innerclass}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>78</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+MainWindowController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>96</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>144</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>162</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>402</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>318</y>
+      <w>180</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>InputFileSelectionGui
+--
+# controller : InputFileController
+... (GUI elements)
+--
+ + InputFileSelectionGui(InputFileController)
+ # createLayout(): void
+ # createComponents(): void
+ + setTxtSelectedFilePath(String): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>444</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>846</x>
+      <y>318</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+InputFileController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>786</x>
+      <y>336</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1104</x>
+      <y>414</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1014</x>
+      <y>318</y>
+      <w>180</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>InputFileLoadGui
+--
+# controller : InputFileController
+... (GUI elements)
+--
+ + InputFileLoadGui(InputFileController)
+ # createLayout(): void
+ # createComponents(): void
+ + setTxtFileStamp(String): void
+ + setTxtLastUploadTime(String): void
+ + setLastUploadTime(String): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1044</x>
+      <y>444</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1248</x>
+      <y>318</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+InputFileController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1188</x>
+      <y>336</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>558</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>474</y>
+      <w>180</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>EmptyExtensionGui
+--
+# 
+... (GUI elements)
+--
+ + EmptyExtensionGui()
+ + createLayout(): JPanel
+ # createComponents(): JPanel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>222</x>
+      <y>600</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>extension.view.gui.
+ExtensionGui
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>846</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>534</y>
+      <w>204</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>CompileAndUploadGui
+--
+# controller : CompileAndUploadAction
+# progressBar : JProgressBar
+# btnCompileAndUpload : JButton
+# btnAbort : JButton
+... (GUI elements)
+--
+ + CompileAndUploadGui(CompileAndUploadAction)
+ - createLayout(): void
+ - createComponents(): void
+ + setProgress(int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>678</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>846</x>
+      <y>534</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>552</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>618</x>
+      <y>774</y>
+      <w>216</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>DlgTargetSystemSelection
+--
+# controller : TargetSystemSelection
+... (GUI elements)
+--
+ + DlgTargetSystemSelection(TargetSystemSelection)
+ # createDialog()
+ + getSelectedDeviceName()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>882</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JDialog
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>888</x>
+      <y>792</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+InputFileController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>828</x>
+      <y>810</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>642</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1164</x>
+      <y>864</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1062</x>
+      <y>792</y>
+      <w>216</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>DlgOutputDeviceSelection
+--
+# controller : OutputDeviceController
+... (GUI elements)
+--
+ + DlgOutputDeviceSelection(OutputDeviceController)
+ # createDialog()
+ + getSelectedDeviceName()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>900</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JDialog
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1332</x>
+      <y>810</y>
+      <w>132</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+OutputDeviceController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1272</x>
+      <y>828</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+</diagram>

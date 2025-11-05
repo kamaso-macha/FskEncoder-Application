@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1010</x>
+      <y>440</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+extension.encoder</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>840</y>
+      <w>300</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>/BitEncoder/ +
+--
+# waveCycleEncoder : WaveCycleEncoder
+--
+ + BitEncoder(WaveCycleEncoder)
+ + encode(int, int): ByteBuffer
+/ # encodeHighBit(int): ByteBuffer/
+/ # encodeLowBit(int): ByteBuffer/
+/ + getSampleBufferSize(): int/
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>950</x>
+      <y>20</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+BitOrder
+--
+LSB_MSB
+MSB_LSB
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1070</x>
+      <y>20</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+BitValue
+--
+LOW
+HIGH</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>970</x>
+      <y>160</y>
+      <w>170</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+ByteOrder
+--
+LITTLE_ENDIAN  
+/ low byte,  high byte /
+
+BIG_ENDIAN     
+/ high byte, low byte /
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>10</y>
+      <w>380</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>Encoder +
+--
+_SAMPLE_BUFFER_SIZE_NOT_SET : String_
+# bitEncoder : BitEncoder
+# bitOrder : BitOrder
+# byteOrder : ByteOrder
+# sampleBuffer : ByteBuffer
+# silenceEncoder : SilenceEncoder
+# startBitSamples : ByteBuffer
+# stopBitSamples : ByteBuffer
+# waveCycleEncoder : WaveCycleEncoder
+--
+ + Encoder(BitEncoder, ByteOrder, BitOrder)
+ + withSilenceEncoder(SilenceEncoder): Encoder
+ + withStartBits(int, BitValue): Encoder
+ + withStopBits(int, BitValue): Encoder
+ + withWaveCycleEncoder(WaveCycleEncoder): Encoder
+
+ + encodeBit(byte, int): void
+ + encodeByte(byte, boolean): void
+ + encodeByteBuffer(ByteBuffer, boolean): void
+ + encodeSilence(int): void
+ + encodeWaveCycle: void
+ + encodeWord(int, boolean): void
+ + getSampleBuffer(): ByteBuffer
+ + getSampleSize(): int
+ # rewindBuffer(ByteBuffer): void
+ + setBufferSize(int): void
+^+ toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>600</y>
+      <w>300</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>FskBitEncoder
+--
+# highBitFrequency : int
+# lowBitFrequency : int
+--
+ + FskBitEncoder(int, int, WaveCycleEncoder)
+^# prepareSampleBuffers(): void
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>810</y>
+      <w>300</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>/FullCycleBitEncoder/
+--
+# highBitSamples : ByteBuffer
+# lowBitSamples : ByteBuffer
+--
+ + FullCycleBitEncoder(WaveCycleEncoder)
+^# encodeHighBit(int): ByteBuffer
+^# encodeLowBit(int): ByteBuffer
+ # fillSampleBuffer(ByteBuffer, int): ByteBuffer
+^+ getSampleBufferSize(): int
+/ # prepareSampleBuffers(): void/
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>720</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>920</y>
+      <w>240</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>600</y>
+      <w>300</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>SilenceEncoder +
+--
+samplingRate : int
+--
+ + SilenceEncoder(int)
+ + encode(int): ByteBuffer
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>700</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>890</x>
+      <y>600</y>
+      <w>300</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>WaveCycleEncoder +
+--
+samplingRate : int
+--
+ + WaveCycleEncoder(int)
+ + encode(int, int): ByteBuffer
+^+ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>470</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;130.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>470</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>220.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>700</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>650</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>700</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;180.0;300.0;10.0</additional_attributes>
+  </element>
+</diagram>

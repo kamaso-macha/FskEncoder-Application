@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1362</x>
+      <y>810</y>
+      <w>102</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+control.gui</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>84</x>
+      <y>552</y>
+      <w>288</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>TargetSystemSelection
+--
+# dialog : JDialog
+# workflowEngine : WorkflowEngine
+# model : TargetSystemSelectionModel
+--
+ + TargetSystemSelection(WorkflowEngine, TargetSystemSelectionModel)
+^+ actionPerformed(ActionEvent)
+ + setTargetSystem()
+ # handleDlgTargetSystemCancelEvent()
+ # handleTargetSystemOKEvent()
+ # handleComboBoxEvent()
+ + getCurrentPosition()
+ + getTargetSystemNames()
+ + getTargetSystemName()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>558</x>
+      <y>810</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>extension.control.
+StatusListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>594</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>extension.protocol.
+BackgroundTaskProtokol
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>0</x>
+      <y>822</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.
+ActionListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>30</x>
+      <y>690</y>
+      <w>96</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;230.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>822</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.
+WorkflowEngine
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>216</x>
+      <y>822</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>model.
+TargetSystemSelectionModel
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>690</y>
+      <w>18</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>690</y>
+      <w>18</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>822</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+DlgTargetSystemSelection
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>690</y>
+      <w>84</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>120.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1092</x>
+      <y>552</y>
+      <w>156</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>StatusBarUpdate
+--
+# statusBarPanel : StatusBarGui
+--
+ + StatusBarUpdate(WorkflowEngine)
+ + setStatusMessage(String): void
+ + getGui(): JPanel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1116</x>
+      <y>648</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+StatusBarGui
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1164</x>
+      <y>618</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1092</x>
+      <y>156</y>
+      <w>288</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>OutputDeviceController
+--
+# dialog : JDialog
+# workflowEngine : WorkflowEngine
+# model : OutputDeviceControllerModel
+# outDevPanel : OutputDeviceGui
+# soundPlayer : SoundPlayer
+--
+ + OutputDeviceController(WorkflowEngine, OutputDeviceControllerModel)
+^+ focusGained(FocusEvent): void
+^+ focusLost(FocusEvent): void
+^+ stateChanged(ChangeEvent): void
+^+ actionPerformed(ActionEvent): void
+ + getOutputDeviceName(): String
+ + getOutputDeviceNames(): String[]
+ + getCurrentPosition(): Point
+ - dispatchTxtField(Object, Object)
+ # handleDefaultOutputDevice(): void
+ # handleDlgOutputDeviceCancelEvent(): void
+ # handleDlgOutputDeviceOKEvent(): void
+ # handleComboBoxEvent(): void
+ + setOutputDevice(): void
+ + setDefaults(): void
+ + getGui(): JPanel
+ + getOutputVolume(): int
+ + getSoundPlayer(): SoundPlayer
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>1080</x>
+      <y>444</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.
+ActionListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>1164</x>
+      <y>444</y>
+      <w>84</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>javax.swing.event.
+ChangeListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>1260</x>
+      <y>444</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.
+FocusListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>402</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1200</x>
+      <y>402</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1290</x>
+      <y>402</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1452</x>
+      <y>156</y>
+      <w>120</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.
+WorkflowEngine
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1452</x>
+      <y>222</y>
+      <w>120</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>model.
+OutputDeviceControllerModel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1452</x>
+      <y>288</y>
+      <w>120</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+OutputDeviceGui
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1452</x>
+      <y>354</y>
+      <w>120</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>sound.SoundPlayer
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1374</x>
+      <y>186</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1374</x>
+      <y>252</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1374</x>
+      <y>306</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1374</x>
+      <y>360</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1296</x>
+      <y>552</y>
+      <w>240</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>OptionPane
+--
+
+--
+ + OptionPane()
+ + setStatusMessage(String): void
+ + showConfirmDialog(Component, Object, String, int, int): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1368</x>
+      <y>648</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JOptionPane
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1416</x>
+      <y>618</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>42</x>
+      <y>138</y>
+      <w>288</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>MainWindowController
+--
+# APPLICATION_TITLE : String
+# mainWindow : MainWindow
+# workflowEngine : WorkflowEngine
+# model : MainWindowControllerModel
+--
+ + MainWindowController(WorkflowEngine, MainWindowControllerModel)
+ + setCurrentPosition(Point): void
+ + setReaderExtensionPanel(JPanel): void
+ + setTitle(): void
+ + setTargetExtensionPanel(JPanel): void
+ + getMainPanel(): JPanel
+ + getMainWindow():MainWindow
+ + saveSetings(): void
+ + getCurrentPosition()
+^+ actionPerformed(ActionEvent): void
+ + getAutosaveFlag(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>174</x>
+      <y>306</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>144</x>
+      <y>342</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.
+ActionListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>528</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+CompileAndUploadGui
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>402</x>
+      <y>132</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.
+WorkflowEngine
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>402</x>
+      <y>198</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+MainWindow
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>402</x>
+      <y>264</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>model.
+MainWindowControllerModel
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>150</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>216</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>270</y>
+      <w>144</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>534</y>
+      <w>294</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>CompileAndUploadAction
+--
+- workflowEngine : WorkflowEngine
+- compileAndUploadPanel : CompileAndUploadGui
+- protocol : BackgroundTaskProtokol
+- bgCompiler : BackgroundTask&lt;Void, Void&gt;
+- soundPlayer : SoundPlayer
+- bgPlayer : BackgroundTask&lt;Void, Void&gt;
+- currentTask : BackgroundTask&lt;Void, Void&gt;
+- selectedRegions : List&lt;MemoryRegion&gt;
+- currentRegion : int
+--
+ + CompileAndUploadAction(WorkflowEngine)
+^+ actionPerformed(ActionEvent): void
+ - handleButtonABORT(): void
+ - handleButtonDoUpload(): void
+ # runCompile(MemoryRegion): void
+ # runUpload(): void
+^+ propertyChange(PropertyChangeEvent): void
+ + setProtocol(Protocol): void
+ # compileNextRegion(): void
+^+ done(): void
+ + setSoundPlayer(SoundPlayer): void
+ + getGui(): JPanel
+^+ notification(Object): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>732</x>
+      <y>810</y>
+      <w>108</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.beans.
+PropertyChangeListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>768</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>648</x>
+      <y>810</y>
+      <w>66</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.
+ActionListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>924</x>
+      <y>180</y>
+      <w>108</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>model.
+InputFileControllerModel
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>480</y>
+      <w>78</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>462</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.
+WorkflowEngine
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>660</y>
+      <w>126</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>extension.protocol.
+BackgroundTask&lt;Void, Void&gt;
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>726</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>sound.
+SoundPlayer
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>792</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>extension.model.
+MemoryRegion
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>768</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>768</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>546</y>
+      <w>78</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>612</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>678</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>714</y>
+      <w>78</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>750</y>
+      <w>78</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1098</x>
+      <y>780</y>
+      <w>138</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+GuiState
+--
+NULL
+INACTIVE
+READY_FOR_UPLOAD
+UPLOAD_RUNNING
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>564</x>
+      <y>180</y>
+      <w>288</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>InputFileController
+--
+- workflowEngine : WorkflowEngine
+- model : InputFileControllerModel
+- inputFileSelectionPanel : InputFileSelectionGui
+- inputFileLoadPanel : InputFileLoadGui
+- parentFrame : JPanel
+--
+ + InputFileController(WorkflowEngine, InputFileControllerModel, JPanel)
+^+ actionPerformed(ActionEvent)
+ - doLoadFile()
+ - doSetDefaultPath()
+ # doSelectFile()
+ + setFileStamp(String)
+ + getFileSelectGui()
+ + getFileLoadGui()
+ + setLastUploadTime(String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>336</y>
+      <w>18</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>558</x>
+      <y>390</y>
+      <w>72</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.
+ActionListener
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>114</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>control.
+WorkflowEngine
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>132</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>246</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+InputFileSelectionGui
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>312</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>view.gui.
+InputFileLoadGui
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>378</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>186</y>
+      <w>138</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>264</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>300</y>
+      <w>90</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>324</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>390</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JFileChooser
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>336</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>762</x>
+      <y>390</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>javax.swing.filechooser.
+FileNameExtensionFilter
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>336</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

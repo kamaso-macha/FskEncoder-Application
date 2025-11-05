@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <help_text/>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>240</y>
+      <w>320</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>WorkflowEngine
+--
+_# EMPTY_STATUS_BAR : String_
+_# NOT_DEFINED : String_
+
+# compileAndUploadController : CompileAndUploadAction
+# enlistOutputDevices : EnlistOutputDevices
+# inputFileController : InputFileController
+# inputReaderExtensionDao : InputReaderExtensionDao
+# mainWindowCallback : MainWindowController
+# model : FskUploaderModel
+# outputDeviceSelectionCallback : OutputDeviceController
+# readerController : ReaderExtensionControl
+# selectedFileName : String
+# statusBarCallback : StatusBarUpdate
+# targetController : TargetSystemExtensionControl
+# targetSystemExtensionDao : TargetSystemExtensionDao
+--
++ WorkflowEngine(FskUploaderModel)
++ getAudioFormat(): FskAudioFormat
++ getFileNameExtensionFilter(): FileNameExtensionFilter
++ getOutputDevice(String): Info
++ getOutputDeviceNames(): String[]
++ getProtocol(): Protocol
++ getReaderGui(): JPanel
++ getSelectedFileName(): String
++ getSelectedMemoryRegions(): List&lt;MemoryRegion&gt;
++ getSoundPlayer(): SoundPlayer
++ getTargetGui(): JPanel
++ loadCandidateFile(): void
++ registerCallback(CompileAndUploadAction): void
++ registerCallback(InputFileController): void
++ registerCallback(MainWindowController): void
++ registerCallback(OutputDeviceController): void
++ registerCallback(StatusBarUpdate): void
++ setReaderPlugin(String): void
++ setSelectedFileName(String): void
++ setStatusMessage(String): void
++ setTargetPlugin(String): void
++ setTargetSystem(String): void
++ setUploadTimestamp(String): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>736</x>
+      <y>824</y>
+      <w>176</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>StatusMessenger +
+--
+setStatusMessage(String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>752</y>
+      <w>24</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>776</x>
+      <y>952</y>
+      <w>136</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Package 
+control</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>32</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>model.
+FskUploaderModel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>120</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>sound.
+EnlistOutputDevices
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>208</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.model.
+InputReaderExtensionDao
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>296</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.model.
+TargetSystemExtensionDao
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>384</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+MainWindowController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>472</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+MainWindowController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>560</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+OutputDeviceController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>648</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+InputFileController
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>736</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.control.
+ReaderExtensionControl
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>824</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.control.
+ReaderExtensionControl
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1112</x>
+      <y>912</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>control.gui.
+StatusBarUpdate
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>88</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.model.
+MemoryRegion
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>176</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>javax.sound.sampled.
+Mixer.Info
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>352</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.factory.
+PlugInFactory
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>528</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>extension.sound.
+FskAudioFormat
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>616</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>javax.swing.
+JPanel
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>792</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>sound.
+SoundPlayer
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>880</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>javax.swing.filechooser.
+FileNameExtensionFilter
+--
+...
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>392</x>
+      <y>440</y>
+      <w>176</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>extension.factory.
+TargetSystemExtensionFactory
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>400</x>
+      <y>264</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>extension.factory.
+InputReaderExtensionFactory
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLInterface</id>
+    <coordinates>
+      <x>424</x>
+      <y>704</y>
+      <w>112</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>extension.protocol.
+Protocol
+--
+...
+lt=.
+bg=#f0f0f0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>112</y>
+      <w>144</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>200</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>272</y>
+      <w>208</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>384</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>448</y>
+      <w>208</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>552</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>640</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>672</y>
+      <w>208</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>696</y>
+      <w>144</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;160.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>728</y>
+      <w>144</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>232</y>
+      <w>144</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>320</y>
+      <w>144</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>408</y>
+      <w>144</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>496</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>584</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>672</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>696</y>
+      <w>144</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>728</y>
+      <w>144</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>752</y>
+      <w>144</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>56</y>
+      <w>144</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;250.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>144</y>
+      <w>144</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;180.0;160.0;10.0</additional_attributes>
+  </element>
+</diagram>
