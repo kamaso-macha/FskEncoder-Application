@@ -172,10 +172,10 @@ class ApplicationResourcesTest {
 		LOGGER.info("testEXTENSION_PROPERTY_FILE()");
 
 		assertTrue(applicationResources != null);
-		assertEquals("null/Extension.properties", ApplicationResources.EXTENSION_PROPERTY_FILE());
+		assertEquals("null/Plugin.properties", ApplicationResources.EXTENSION_PROPERTY_FILE());
 		
 		ApplicationResources.setPath("./foo/bar");
-		assertEquals("./foo/bar/Extension.properties", ApplicationResources.EXTENSION_PROPERTY_FILE());
+		assertEquals("./foo/bar/Plugin.properties", ApplicationResources.EXTENSION_PROPERTY_FILE());
 				
 	} // testEXTENSION_PROPERTY_FILE()
 	

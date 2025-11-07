@@ -88,7 +88,7 @@ class FskUploaderModelTest {
 	private ApplicationResources appRes;
 	
 	private String defaultPropertyFileName		= "./test-cfg/FskEncoder.properties";
-	private String extensionPropertyFileName	= "./test-cfg/Extension.properties";
+	private String extensionPropertyFileName	= "./test-cfg/Plugin.properties";
 
 	private Properties defaultPropertiesMock;
 	private Properties extensionPropertiesMock;
