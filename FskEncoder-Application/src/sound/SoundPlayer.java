@@ -338,6 +338,8 @@ public class SoundPlayer extends BackgroundTask<Void, Void> {
 	 * 
 	 * @param level
 	 * the gain level to be checked.
+	 * 
+	 * @return a valid minimum or maximum
 	 */
 	protected float limit(FloatControl control, float level) {
 		logger.trace("limit(): level = {}, min = {}, max = {}", level, control.getMaximum(), control.getMinimum());

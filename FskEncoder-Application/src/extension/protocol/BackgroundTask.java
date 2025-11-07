@@ -101,6 +101,7 @@ public abstract class BackgroundTask<T, V> {
 	 * <br>
 	 * It must be implemented in the derived sub-class to trigger all required actions.
 	 * 
+	 * @return An instance of the type T
 	 */
 	public abstract T runBackgroundTask();
 
