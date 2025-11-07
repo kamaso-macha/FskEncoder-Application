@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="Build Application Support">
 
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="C:/Users/Stefan/.p2/pool/plugins/ant-contrib-1.0b3-bin/ant-contrib/ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
+	
+
+    <property name="projectname"		value="FskEncoder-Application"/>
+	<property name="main.line"			value="1" />
+
 	<property name="app.dir.projectRoot"	value="H:/GitRepository/FskEncoder-Application/FskEncoder-Application" />
 	<property name="dir.dist"				value="H:/GitSandbox/FskEncoder/dist" />
 
@@ -10,9 +20,6 @@
 	<property name="app.dir.defaultsRepo"	value="${app.dir.projectRoot}/defaults" />
 	<property name="app.dir.extensions"		value="${dir.dist}/extensions" />
 
-	<property name="main.line"			value="1" />
-
-    <basename property="projectname"	file="${basedir}"/>
 	
 	<macrodef name="replaceLibrary" >
 		
@@ -68,17 +75,14 @@
 		<attribute name="version" />
 		<attribute name="timestamp" />
 		
-		<sequential>
 		
-			 <script language="javascript">
-			  arr = project.getProperty('version').split('.');
-			  project.setProperty('line', arr[0]);
-			  project.setProperty('stream', arr[1]);
-			 </script>
+		<sequential>
 
-			<buildnumber file="@{location}/build.number"/>
-
-			<echo message="Candidate = @{location}, Version = @{version}" />
+			<propertyregex property="lineNbr"	input="@{version}" regexp="^([^\.]+)\."					select="\1" />
+			<propertyregex property="streamNbr"	input="@{version}" regexp="^[^\.]+\.([^\.]+)\."			select="\1" />
+			<propertyregex property="buildNbr"	input="@{version}" regexp="^[^\.]+\.[^\.]+\.([^\.]+)$"	select="\1" />
+			
+			<echo message="Candidate = @{location}, Version = @{version} ->lineNbr:  ${lineNbr}, streamNbr: ${streamNbr}, buildNbr: ${buildNbr}" />
 			
 			<delete file="@{location}/MANIFEST.MF" />
 	
@@ -87,10 +91,10 @@
 		        <attribute name="Built-By" 			value="${user.name}"/>
 		        <attribute name="Project" 			value="${projectname}"/>
 		        <attribute name="Modul" 			value="${targetName}"/>
-				<attribute name="Main-Line"			value="${line}"/>
-				<attribute name="Stream"			value="${stream}"/>
-		        <attribute name="Version" 			value="${build.number}"/>
-		        <attribute name="Build" 			value="@{version}-${build.number}"/>
+				<attribute name="Main-Line"			value="${lineNbr}"/>
+				<attribute name="Stream"			value="${streamNbr}"/>
+		        <attribute name="Build" 			value="${buildNbr}"/>
+		        <attribute name="Version" 			value="@{version}"/>
 		        <attribute name="Build-Date" 		value="@{timestamp}"/>
 		    </manifest>
 		

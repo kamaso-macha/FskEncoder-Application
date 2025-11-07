@@ -11,7 +11,12 @@
 	<property name="stream" value="0"/>
 	
 	<property name="version" value="${main.line}.${stream}"/>
+
+	<buildnumber file="${app.dir.defaultsRepo}/${targetName}/build.number"/>
+	<property name="build" value="${build.number}" />
 	
+	<property name="release" value ="${version}.${build}" />
+
 	
 	<target name="build all">
 		
@@ -19,26 +24,25 @@
 			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
 		</tstamp>
 
-		<echo message="${current.time}" />      
+		<echo message="Building version ${release} at ${current.time}" />      
 		
 		<antcall target="${targetName}" />				
 		<antcall target="copy config" />
-
 		<antcall target="Extension jar" />
-
-		<!-- antcall target="pack application" / -->
 
 	</target>
 	
 	
-	<target name="FskEncoder">	
+	<target name="FskEncoder">
+		
+		<echo message="release: ${release}" />
 		
 		<replaceFile sourcepath="${app.dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}.bat" />
 		<replaceFile sourcepath="${app.dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}-all.bat" />
 
 		<mkManifest 
 			location="${app.dir.defaultsRepo}/${targetName}" 
-			version="${version}" 
+			version="${release}" 
 			timestamp="${current.time}" 
 		/>
 		
@@ -72,6 +76,8 @@
 	
 	<target name="copy config" >
 		
+		<echo message="release: ${release}" />
+
 		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Empty.properties" />
 		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Plugin.properties" />
 		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="FskEncoder.properties" />
@@ -82,6 +88,8 @@
 	
 	<target name="pack application">
 	
+		<echo message="release: ${release}" />
+
 		<delete file="${dir.dist}/${targetName}.zip" failonerror="no" />
 		
 		<zip destfile="${dir.dist}/${targetName}.zip"
@@ -94,12 +102,14 @@
 	
 	<target name="Extension jar">
 		
-		<property name="extensionName" value="${targetName}Extension.jar" />
+		<echo message="release: ${release}" />
+
+		<property name="extensionName" value="${targetName}Extension-${release}.jar" />
 		<property name="dir.extension" value="${app.dir.projectRoot}/target/tmp" />
 	
 		<mkManifest 
 			location="${app.dir.defaultsRepo}/${targetName}" 
-			version="${version}" 
+			version="${release}" 
 			timestamp="${current.time}" 
 		/>
 		
@@ -121,4 +131,48 @@
 	</target>
 	
 	
+	
+	<target name="Extension javadoc">
+		
+		<echo message="release: ${release}" />
+
+		<property name="dir.log4j" value="C:/Users/Stefan/.m2/repository/org/apache/logging/log4j" />
+
+		<echo message="app.dir.sourceRoot = ${app.dir.sourceRoot}" />
+		<echo message="app.dir.docRoot    = ${app.dir.docRoot}" />
+		<echo message="dir.log4j          = ${dir.log4j}" />
+
+		<delete dir="${app.dir.docRoot}/extension" failonerror="no" />
+		
+		<javadoc 
+			packagenames="extension.*" 
+			sourcepath="${app.dir.sourceRoot}"
+			destdir="${app.dir.docRoot}/extension" 
+			version="true"
+			defaultexcludes="yes"
+			excludepackagenames="org.*"
+			windowtitle="Fsk Encoder Extensions"
+		>
+	
+			<classpath>
+				<fileset dir="${dir.log4j}/log4j-api/2.11.2">
+					<include name="*.jar"/>
+				</fileset>
+				<fileset dir="${dir.log4j}/log4j-core/2.11.2">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+
+			<doctitle><![CDATA[Fsk Encoder Extension Interface r${release}]]></doctitle>
+			<bottom>
+			<![CDATA[Copyright 2025. All Rights Reserved.]]>
+			</bottom>
+			
+		</javadoc>
+	
+		<echo message="java doc has been generated!" />
+
+	</target>
+	
+
 </project>
