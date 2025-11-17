@@ -19,6 +19,7 @@
 	<property name="app.dir.mavenRepo"		value="C:/Users/Stefan/.m2/repository" />
 	<property name="app.dir.defaultsRepo"	value="${app.dir.projectRoot}/defaults" />
 	<property name="app.dir.extensions"		value="${dir.dist}/extensions" />
+	<property name="app.dir.doc"			value="${app.dir.projectRoot}/doc/userGuide/UG.FskEncoder" />
 
 	
 	<macrodef name="replaceLibrary" >
