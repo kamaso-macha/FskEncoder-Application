@@ -3,7 +3,7 @@
 This folder contains zip files of the FskEncoder-Application distribution:
 
 - the *FskEncoder-app-dist.zip* file which contains the application **without**  any extension plugin and
-- the *FskEncoder-all-dist.zip* file which contains the application **along with** the following extensions along with the related documentation files:
+- the *FskEncoder-all-dist.zip* file which contains the application **along with** the following extensions and the related documentation files:
   
   - BinReaderExtension, \
     for reading binary source files
