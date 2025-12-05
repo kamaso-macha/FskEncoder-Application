@@ -32,5 +32,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="extensions/BinReaderExtension.jar"/>
+	<classpathentry kind="lib" path="extensions/Ihx8ReaderExtension.jar"/>
+	<classpathentry kind="lib" path="extensions/Mpf1Extension.jar"/>
+	<classpathentry kind="lib" path="extensions/Z80TrainerExtension.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

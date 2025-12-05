@@ -99,19 +99,10 @@ public abstract class MemoryRegionBuilder {
 	
 	
 	/**
-	 * Takes an IhxRecord and decides on it's type (DATA or EOF) the further processing.
-	 * <p>
-	 * On receive of the first DATA record at all a new MemoryRegion object is created and feed with the DATA record. 
-	 * This MemoryRegion is feed with all subsequent DATA records.
-	 * <p>
-	 * If the source file contains more than one memory region, the creation of different MemoryRegions is handled 
-	 * in the base class. 
 	 * 
-	 * @param aDataRecord 
-	 * an IhxRecord to process.
+	 * Derive classes must implement this method specific to the data / record format 
+	 * of the source file.
 	 * 
-	 * @throws ReaderException 
-	 * if a DATA record appears after an EOF record.
 	 */
 	
 	public abstract void append(final DataRecord aDataRecord) throws ReaderException;

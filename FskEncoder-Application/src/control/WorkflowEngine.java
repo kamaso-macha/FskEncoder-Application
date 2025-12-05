@@ -219,6 +219,8 @@ public class WorkflowEngine implements StatusMessenger {
 		
 		readerController.load();
 		
+		// Note: This code is necessary for a GUI update after loading a file.
+		// Otherwise the input reader extension panel is left empty or incorrect
 		JPanel panel = readerController.createLayout();
 		mainWindowCallback.setReaderExtensionPanel(panel);
 		
@@ -330,6 +332,7 @@ public class WorkflowEngine implements StatusMessenger {
 			readerController = inputReaderExtensionDao.CONTROL;	
 			readerController.initialize(inputReaderExtensionDao, (StatusMessenger)this);
 
+			// Note: This code provides an empty input reader panel!
 			JPanel memoryMapPanel = readerController.createLayout();		// NOSONAR
 			mainWindowCallback.setReaderExtensionPanel(memoryMapPanel);
 			
@@ -592,7 +595,7 @@ public class WorkflowEngine implements StatusMessenger {
 	 * @return
 	 */
 	public FileNameExtensionFilter getFileNameExtensionFilter() {
-		logger.trace("getFileNameExtensionFilter()");
+		logger.trace("getFileNameExtensionFilter(): inputReaderExtensionDao = {}", inputReaderExtensionDao);
 		
 		return inputReaderExtensionDao.READER.getFileNameExtensionFilter();
 		

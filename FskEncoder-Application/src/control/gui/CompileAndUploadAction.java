@@ -135,6 +135,41 @@ public class CompileAndUploadAction implements StatusListener, ActionListener, P
 	/**
 	 * 
 	 */
+	protected void compileNextRegion() {
+		logger.trace("compileNextRegion(): currentRegion = {}, selectedRegions.size() = {}", currentRegion, selectedRegions.size());
+		
+		currentRegion++;
+		
+		if(currentRegion < selectedRegions.size()) {
+			runCompile(selectedRegions.get(currentRegion));
+		}
+
+	} // compileNextRegion()
+
+
+	@Override
+	public void done() {
+		logger.trace("done()");
+
+		compileAndUploadPanel.setProgress(100);
+		
+	} // done()
+
+
+	/**
+	 * @return
+	 */
+	public JPanel getGui() {
+		logger.trace("getGui()");
+		
+		return compileAndUploadPanel;
+		
+	} // getGui()
+
+
+	/**
+	 * 
+	 */
 	private void handleButtonABORT() {
 		logger.trace("handleButtonABORT()");
 				
@@ -173,6 +208,78 @@ public class CompileAndUploadAction implements StatusListener, ActionListener, P
 			
 	} // handleButtonDoUpload()
 
+
+	@Override
+	public void notification(Object aNotification) {
+		logger.trace("notification(): aNotification = {}", aNotification);
+		
+	} // notification()
+
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		logger.trace("propertyChange(): evt = {}, currentTask = {}", evt, currentTask);
+		
+		final String STATE = "state"; // NOSONAR
+
+		logger.trace("compileAndUploadPanel = {}", compileAndUploadPanel);
+		
+		String propertyName = evt.getPropertyName();
+		Object propertyValue = evt.getNewValue();
+
+		logger.debug("propertyName = {}, propertyValue = {}", propertyName, propertyValue);
+
+		// from BackgroundExecutor<T, V> extends SwingWorker<T, V>
+		if ("progress" == propertyName) {
+			
+			int progress = (Integer)propertyValue;
+			
+			logger.trace("progress = {}", progress);
+			compileAndUploadPanel.setProgress(progress);
+
+		}
+		// from ???
+		else if(bgCompiler == currentTask
+				&& STATE == propertyName
+				&&  "STARTED"  == (String) propertyValue.toString()) {
+			
+			logger.trace("propertyChange(): compiler = STARTED ...");
+						
+		}
+		else if(bgCompiler == currentTask
+			&& STATE == propertyName
+			&&  "DONE"  == (String) propertyValue.toString()) {
+				
+			logger.trace("propertyChange(): compiler = DONE!");
+			runUpload();
+						
+		}
+		else if(bgPlayer == currentTask
+			&& STATE == propertyName
+			&&  "STARTED"  == (String) propertyValue.toString()) {
+				
+			logger.trace("propertyChange(): player = STARTED ...");
+
+		}
+		else if(bgPlayer == currentTask
+			&& STATE == propertyName
+			&&  "DONE"  == (String) propertyValue.toString()) {
+			
+			logger.trace("propertyChange(): player = DONE!");
+
+			String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
+			
+			workflowEngine.setStatusMessage("");
+			workflowEngine.setUploadTimestamp(timeStamp);
+			compileNextRegion();
+				
+		}
+		else {
+			logger.error("unhandled propertyChange event");
+		}
+		
+	} // propertyChange()
+	
 
 	/**
 	 * @param aCandidate
@@ -267,71 +374,6 @@ public class CompileAndUploadAction implements StatusListener, ActionListener, P
 	} // runUpload()
 
 
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		logger.trace("propertyChange(): evt = {}, currentTask = {}", evt, currentTask);
-		
-		final String STATE = "state"; // NOSONAR
-
-		logger.trace("compileAndUploadPanel = {}", compileAndUploadPanel);
-		
-		String propertyName = evt.getPropertyName();
-		Object propertyValue = evt.getNewValue();
-
-		logger.debug("propertyName = {}, propertyValue = {}", propertyName, propertyValue);
-
-		// from BackgroundExecutor<T, V> extends SwingWorker<T, V>
-		if ("progress" == propertyName) {
-			
-			int progress = (Integer)propertyValue;
-			
-			logger.trace("progress = {}", progress);
-			compileAndUploadPanel.setProgress(progress);
-
-		}
-		// from ???
-		else if(bgCompiler == currentTask
-				&& STATE == propertyName
-				&&  "STARTED"  == (String) propertyValue.toString()) {
-			
-			logger.trace("propertyChange(): compiler = STARTED ...");
-						
-		}
-		else if(bgCompiler == currentTask
-			&& STATE == propertyName
-			&&  "DONE"  == (String) propertyValue.toString()) {
-				
-			logger.trace("propertyChange(): compiler = DONE!");
-			runUpload();
-						
-		}
-		else if(bgPlayer == currentTask
-			&& STATE == propertyName
-			&&  "STARTED"  == (String) propertyValue.toString()) {
-				
-			logger.trace("propertyChange(): player = STARTED ...");
-
-		}
-		else if(bgPlayer == currentTask
-			&& STATE == propertyName
-			&&  "DONE"  == (String) propertyValue.toString()) {
-			
-			logger.trace("propertyChange(): player = DONE!");
-
-			String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
-			
-			workflowEngine.setStatusMessage("");
-			workflowEngine.setUploadTimestamp(timeStamp);
-			compileNextRegion();
-				
-		}
-		else {
-			logger.error("unhandled propertyChange event");
-		}
-		
-	} // propertyChange()
-	
-
 	/**
 	 * @param aProtocol
 	 */
@@ -344,30 +386,6 @@ public class CompileAndUploadAction implements StatusListener, ActionListener, P
 
 
 	/**
-	 * 
-	 */
-	protected void compileNextRegion() {
-		logger.trace("compileNextRegion(): currentRegion = {}, selectedRegions.size() = {}", currentRegion, selectedRegions.size());
-		
-		currentRegion++;
-		
-		if(currentRegion < selectedRegions.size()) {
-			runCompile(selectedRegions.get(currentRegion));
-		}
-
-	} // compileNextRegion()
-
-
-	@Override
-	public void done() {
-		logger.trace("done()");
-
-		compileAndUploadPanel.setProgress(100);
-		
-	} // done()
-
-
-	/**
 	 * @param soundPlayer
 	 */
 	public void setSoundPlayer(SoundPlayer aSoundPlayer) {
@@ -376,24 +394,6 @@ public class CompileAndUploadAction implements StatusListener, ActionListener, P
 		soundPlayer = aSoundPlayer;
 		
 	} // setSoundPlayer()
-
-
-	/**
-	 * @return
-	 */
-	public JPanel getGui() {
-		logger.trace("getGui()");
-		
-		return compileAndUploadPanel;
-		
-	} // getGui()
-
-
-	@Override
-	public void notification(Object aNotification) {
-		logger.trace("notification(): aNotification = {}", aNotification);
-		
-	} // notification()
 
 
 } // ssalc

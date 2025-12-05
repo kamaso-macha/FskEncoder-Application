@@ -128,7 +128,7 @@ public class InputFileController implements ActionListener {
 	/**
 	 * 
 	 */
-	private void doLoadFile() {
+	protected void doLoadFile() {
 		logger.trace("doLoadFile()");
 		
         String filePath = workflowEngine.getSelectedFileName();
@@ -149,7 +149,7 @@ public class InputFileController implements ActionListener {
 	} // doLoadFile()
 
 
-	private void doSetDefaultPath() {
+	protected void doSetDefaultPath() {
 		logger.trace("doSetDefaultPath()");
 
         JFileChooser chooser = new JFileChooser();
