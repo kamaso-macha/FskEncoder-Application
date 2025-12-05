@@ -1,16 +1,15 @@
 /**
  *
  * **********************************************************************
- * PROJECT       : FskEncoder
+ * PROJECT       : FskEncoder-Application
  * FILENAME      : EnlistOutputDevicesTest.java
  *
- * PURPOSE       : what is it for?
+ * More information about this project can be found on Github
+ * http://github.com/kamaso-macha/FskEncoder-Application
  *
- * This file is part of the FSK-Encoder project. More information about
- * this project can be found here:  http://...
  * **********************************************************************
  *
- * Copyright (C) [2024] by Stefan Dickel, id4mqtt at gmx.de
+ * Copyright (C)2025 by Kama So Macha (http://github.com/kamaso-macha)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -98,7 +97,7 @@ class EnlistOutputDevicesTest {
 	void setUp() throws Exception {
 
 		mixerInfo = new Mixer.Info[] {
-			new  TestMixerInfo("Primärer", "vendor7", "description7: DirectSound Playback", "version7"),
+			new  TestMixerInfo("Primï¿½rer", "vendor7", "description7: DirectSound Playback", "version7"),
 			new  TestMixerInfo("Primary",  "vendor8", "description8: DirectSound Playback", "version8"),
 
 			new  TestMixerInfo("name1", "vendor1", "description1: DirectSound Playback", "version1"),
@@ -110,7 +109,7 @@ class EnlistOutputDevicesTest {
 		};
 			
 		referenceNames = new String[] {
-			"Primärer",
+			"Primï¿½rer",
 			"Primary",
 			"name1",
 			"name2",

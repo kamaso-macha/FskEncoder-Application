@@ -1,16 +1,15 @@
 /**
  *
  * **********************************************************************
- * PROJECT       : FskEncoder
+ * PROJECT       : FskEncoder-Application
  * FILENAME      : GuiExtensionDaoTest.java
  *
- * PURPOSE       : what is it for?
+ * More information about this project can be found on Github
+ * http://github.com/kamaso-macha/FskEncoder-Application
  *
- * This file is part of the FSK-Encoder project. More information about
- * this project can be found here:  http://...
  * **********************************************************************
  *
- * Copyright (C) [2024] by Stefan Dickel, id4mqtt at gmx.de
+ * Copyright (C)2025 by Kama So Macha (http://github.com/kamaso-macha)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as

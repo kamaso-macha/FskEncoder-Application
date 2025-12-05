@@ -1,14 +1,15 @@
 /**
   *
   * **********************************************************************
-  * PROJECT       : fskencoder
+  * PROJECT       : FskEncoder-Application
   * FILENAME      : DefaultChecksumCalculator.java
   *
-  * This file is part of the FSK-Encoder project. More information about
-  * this project can be found here:  http://to.be.provided.
-  * **********************************************************************
-  *
-  * Copyright (C) [2023] by Stefan Dickel, 'fsk-encoder.sdi at gmx.de'
+ * More information about this project can be found on Github
+ * http://github.com/kamaso-macha/FskEncoder-Application
+ *
+ * **********************************************************************
+ *
+ * Copyright (C)2025 by Kama So Macha (http://github.com/kamaso-macha)
   *
   * This program is free software.
   * You can use, redistribute and/or modify it under the terms of 
