@@ -1,6 +1,11 @@
 # FskEncoder-Application
 Fsk-Encoder Application part without any extension
 
+## Disclaimer
+This project is still work in progress so the application is as it is! And it is only tested on one single host computer running Win 10.
+
+A lot of work is outstanding like unit tests and javadoc ...
+
 ## Abstract
 The Fsk Encoder application is a usefull tool for SW development in retro computing enviornment.
 

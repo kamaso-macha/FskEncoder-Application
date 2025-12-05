@@ -14,3 +14,7 @@ This folder contains zip files of the FskEncoder-Application distribution:
   - Z80TrainerExtension, \
     for interaction with the SEL Z80-Trainer board.
 
+## Disclaimer
+This project is still work in progress so the application is as it is! And it is only tested on one single host computer running Win 10.
+
+A lot of work is outstanding like unit tests and javadoc ...
