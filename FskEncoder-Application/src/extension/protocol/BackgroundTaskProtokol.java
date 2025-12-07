@@ -35,6 +35,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import extension.encoder.Encoder;
+import extension.execution.BackgroundTask;
 
 /**
  * Responsibilities:<br>

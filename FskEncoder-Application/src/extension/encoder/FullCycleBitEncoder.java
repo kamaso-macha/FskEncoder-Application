@@ -53,7 +53,7 @@ import org.apache.logging.log4j.Logger;
  * Description:<br>
  * 	This class provides the encodeLowBit and encodeHighBit methods which are required for the base class
  * 	BitEncoder.<br>
- * 	It also set a abstract stub method preparesampleBuffer which must be implemented in the derived subclass.
+ * 	It also set a abstract method stub preparesampleBuffer() which must be implemented in the derived subclass.
  * <p>
  * 	
  * 

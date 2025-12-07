@@ -41,7 +41,7 @@ package extension.control;
  * 
  * <p>
  * Description:<br>
- * BackgroundTask holds a instance of a controller by it's StatusListener interface.
+ * BackgroundTask holds a instance of a controller by it's StatusListener field.
  * 
  * <p>
  * @author Stefan

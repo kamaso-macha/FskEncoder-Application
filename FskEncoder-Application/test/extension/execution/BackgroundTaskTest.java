@@ -28,7 +28,7 @@
  */
 
 
-package extension.protocol;
+package extension.execution;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -44,8 +44,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 
-import extension.control.BackgroundExecutor;
 import extension.control.StatusListener;
+import extension.execution.BackgroundExecutor;
+import extension.execution.BackgroundTask;
 
 /**
  * Responsibilities:<br>
@@ -118,7 +119,7 @@ class BackgroundTaskTest {
 	
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#BackgroundTask()}.
+	 * Test method for {@link extension.execution.BackgroundTask#BackgroundTask()}.
 	 */
 	@Test
 	final void testBackgroundTask() {
@@ -134,7 +135,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#addPropertyChangeListener(java.beans.PropertyChangeListener)}.
+	 * Test method for {@link extension.execution.BackgroundTask#addPropertyChangeListener(java.beans.PropertyChangeListener)}.
 	 */	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
@@ -177,7 +178,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#runBackgroundTask()}.
+	 * Test method for {@link extension.execution.BackgroundTask#runBackgroundTask()}.
 	 */
 	@Test
 	final void testRunBackgroundTask() {
@@ -193,7 +194,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#cancel(boolean)}.
+	 * Test method for {@link extension.execution.BackgroundTask#cancel(boolean)}.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
@@ -222,7 +223,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#done()}.
+	 * Test method for {@link extension.execution.BackgroundTask#done()}.
 	 */
 	@Test
 	final void testDone() {
@@ -242,7 +243,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#execute()}.
+	 * Test method for {@link extension.execution.BackgroundTask#execute()}.
 	 */
 	@Test
 	final void testExecute() {
@@ -258,7 +259,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#getProgress()}.
+	 * Test method for {@link extension.execution.BackgroundTask#getProgress()}.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
@@ -293,7 +294,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#isDone()}.
+	 * Test method for {@link extension.execution.BackgroundTask#isDone()}.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
@@ -328,7 +329,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#isCancelled()}.
+	 * Test method for {@link extension.execution.BackgroundTask#isCancelled()}.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Test
@@ -363,7 +364,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#registerStatusListener(extension.control.StatusListener)}.
+	 * Test method for {@link extension.execution.BackgroundTask#registerStatusListener(extension.control.StatusListener)}.
 	 */
 	@Test
 	final void testRegisterStatusListener() {
@@ -386,7 +387,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#isRunning()}.
+	 * Test method for {@link extension.execution.BackgroundTask#isRunning()}.
 	 */
 	@Test
 	final void testIsRunning() {
@@ -403,7 +404,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#stop()}.
+	 * Test method for {@link extension.execution.BackgroundTask#stop()}.
 	 */
 	@Test
 	final void testStepOn() {
@@ -435,7 +436,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#stop()}.
+	 * Test method for {@link extension.execution.BackgroundTask#stop()}.
 	 */
 	@Test
 	final void testStop() {
@@ -452,7 +453,7 @@ class BackgroundTaskTest {
 
 
 	/**
-	 * Test method for {@link extension.protocol.BackgroundTask#toString()}.
+	 * Test method for {@link extension.execution.BackgroundTask#toString()}.
 	 */
 	@Test
 	final void testToString() {

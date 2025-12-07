@@ -147,7 +147,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-        <Root level="all">
+        <Root level="info">
             <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Root>

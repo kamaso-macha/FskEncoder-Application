@@ -72,7 +72,7 @@ import org.mockito.MockedConstruction;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import extension.control.BackgroundExecutor;
+import extension.execution.BackgroundExecutor;
 
 
 /**

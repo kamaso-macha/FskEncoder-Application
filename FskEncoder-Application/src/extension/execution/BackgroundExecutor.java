@@ -28,14 +28,12 @@
  */
 
 
-package extension.control;
+package extension.execution;
 
 import javax.swing.SwingWorker;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import extension.protocol.BackgroundTask;
 
 /**
  * Responsibilities:<br>
@@ -71,6 +69,12 @@ public class BackgroundExecutor<T, V> extends SwingWorker<T, V> {
 	protected BackgroundTask<T, V> backgroundTask;
 	
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param aBackgroundTask
+	 * the task to be executed in background.
+	 */
 	public BackgroundExecutor(BackgroundTask<T, V> aBackgroundTask) {
 		logger.trace("BackgroundExecutor(): aBackgroundTask = {}", aBackgroundTask);
 		

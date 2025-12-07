@@ -61,8 +61,7 @@ import org.apache.logging.log4j.Logger;
  * 	  <li>ByteBuffer encodeLowBit(final int aCount)</li>
  * 	  <li>ByteBuffer encodeHighBit(final int aCount)</li>
  * 	</ul>
- * 	Examples how this can be done - also for a bit more complex implementation -
- * 	can be found in class target.z80trainer.FskBitEncoder (simple style) and target.microprofessor1.Mpf1BitEncoder.
+ * 	Examples how this is to be done can be found in class FskBitEncoder (simple style) or in the extension microprofessor1.Mpf1BitEncoder (a more complex one).
  * <p>
  * @author Stefan
  *

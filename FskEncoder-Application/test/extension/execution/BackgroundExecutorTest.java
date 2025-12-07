@@ -28,7 +28,7 @@
  */
 
 
-package extension.control;
+package extension.execution;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -41,8 +41,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import extension.control.BackgroundExecutor;
-import extension.protocol.BackgroundTask;
+import extension.execution.BackgroundExecutor;
+import extension.execution.BackgroundTask;
 
 /**
  * Responsibilities:<br>
@@ -111,7 +111,7 @@ class BackgroundExecutorTest {
 
 	
 	/**
-	 * Test method for {@link extension.control.BackgroundExecutor#done()}.
+	 * Test method for {@link extension.execution.BackgroundExecutor#done()}.
 	 */
 	@Test
 	final void testDoInBackground() {
@@ -132,7 +132,7 @@ class BackgroundExecutorTest {
 
 
 	/**
-	 * Test method for {@link extension.control.BackgroundExecutor#done()}.
+	 * Test method for {@link extension.execution.BackgroundExecutor#done()}.
 	 */
 	@Test
 	final void testDone() {
@@ -146,7 +146,7 @@ class BackgroundExecutorTest {
 
 
 	/**
-	 * Test method for {@link extension.control.BackgroundExecutor#BackgroundExecutor(extension.protocol.BackgroundTask)}.
+	 * Test method for {@link extension.execution.BackgroundExecutor#BackgroundExecutor(extension.execution.BackgroundTask)}.
 	 */
 	@Test
 	final void testBackgroundExecutor() {
@@ -162,7 +162,7 @@ class BackgroundExecutorTest {
 
 
 	/**
-	 * Test method for {@link extension.control.BackgroundExecutor#stepOn(int)}.
+	 * Test method for {@link extension.execution.BackgroundExecutor#stepOn(int)}.
 	 */
 	@Test
 	final void testStepOn() {
@@ -183,7 +183,7 @@ class BackgroundExecutorTest {
 
 
 	/**
-	 * Test method for {@link extension.control.BackgroundExecutor#toString()}.
+	 * Test method for {@link extension.execution.BackgroundExecutor#toString()}.
 	 */
 	@Test
 	final void testToString() {

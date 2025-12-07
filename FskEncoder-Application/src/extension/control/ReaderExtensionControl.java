@@ -69,7 +69,7 @@ public abstract class ReaderExtensionControl implements ActionListener {	// NOSO
 	 * extension specific GUI elements.
 	 * 
 	 * @return
-	 * : a subclass of ExtensionGui, containing the extension specific GUI elements.
+	 * a subclass of ExtensionGui, containing the extension specific GUI elements.
 	 * 
 	 */
 	public abstract JPanel createLayout();
@@ -80,10 +80,10 @@ public abstract class ReaderExtensionControl implements ActionListener {	// NOSO
 	 * Derived class must implement this method and must initialize itself if the method is invoked. 
 	 * 
 	 * @param aInputReaderExtensionDao 
-	 * : a parameter set. See  {@link extension.model.InputReaderExtensionDao}.
+	 * a parameter set. See  {@link extension.model.InputReaderExtensionDao}.
 	 * 
 	 * @param workflowEngine
-	 * : a instance of the workflowEngine class.
+	 * a instance of the workflowEngine class.
 	 * 
 	 */
 	public abstract void initialize(InputReaderExtensionDao aInputReaderExtensionDao, StatusMessenger aStatusMessenger);
@@ -94,7 +94,7 @@ public abstract class ReaderExtensionControl implements ActionListener {	// NOSO
 	 * Derived class must implement this method to receive the file path of the candidate file.
 	 * 
 	 * @param aFilePath
-	 * : the file FQ path of the candidate file.
+	 * the file FQ path of the candidate file.
 	 *  
 	 */
 	public abstract void setFileName(String aFilePath);
@@ -115,7 +115,7 @@ public abstract class ReaderExtensionControl implements ActionListener {	// NOSO
 	 * On invocation it must return a List of all selected memory regions.
 	 *  
 	 * @return
-	 * : a list of all selected memory regions.
+	 * a list of all selected memory regions.
 	 */
 	public abstract List<MemoryRegion> getSelectedMemoryRegions();
 	

@@ -47,8 +47,8 @@ import org.apache.logging.log4j.Logger;
 
 import control.WorkflowEngine;
 import extension.control.StatusListener;
+import extension.execution.BackgroundTask;
 import extension.model.MemoryRegion;
-import extension.protocol.BackgroundTask;
 import extension.protocol.BackgroundTaskProtokol;
 import extension.protocol.Protocol;
 import sound.SoundPlayer;

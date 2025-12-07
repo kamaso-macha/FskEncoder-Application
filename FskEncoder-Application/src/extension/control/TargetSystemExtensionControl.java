@@ -67,7 +67,7 @@ public abstract class TargetSystemExtensionControl implements ActionListener { /
 	 * extension specific GUI elements.
 	 * 
 	 * @return
-	 * : a subclass of ExtensionGui, containing the extension specific GUI elements.
+	 * a subclass of ExtensionGui, containing the extension specific GUI elements.
 	 * 
 	 */
 	public abstract JPanel createLayout();
@@ -80,7 +80,7 @@ public abstract class TargetSystemExtensionControl implements ActionListener { /
 	 * the target system. 
 	 *  
 	 * @return
-	 * : a instance of FskAudioFormat, which is defined in the target system. 
+	 * a instance of FskAudioFormat, which is defined in the target system. 
 	 * 
 	 */
 	public abstract FskAudioFormat getAudioFormat();
@@ -93,7 +93,7 @@ public abstract class TargetSystemExtensionControl implements ActionListener { /
 	 * extension specific GUI elements.
 	 * 
 	 * @return
-	 * : a subclass of ExtensionGui, containing the extension specific GUI elements.
+	 * a subclass of ExtensionGui, containing the extension specific GUI elements.
 	 * 
 	 */
 	public abstract JPanel getGui();
@@ -106,7 +106,7 @@ public abstract class TargetSystemExtensionControl implements ActionListener { /
 	 * the target system. 
 	 *  
 	 * @return
-	 * : a instance of Protocol, which is used by the target system. 
+	 * a instance of Protocol, which is used by the target system. 
 	 * 
 	 */
 	public abstract Protocol getProtocol();

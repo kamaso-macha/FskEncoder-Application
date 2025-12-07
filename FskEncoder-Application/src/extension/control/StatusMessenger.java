@@ -31,11 +31,12 @@ package extension.control;
 
 /**
  * Responsibilities:<br>
- * 
+ * Provides access to the status bar of the main window.
  * 
  * <p>
  * Collaborators:<br>
- * 
+ * WorkflowRngine,<br>
+ * concrete implentation of a input reader or target system extension control.
  * 
  * <p>
  * Description:<br>
