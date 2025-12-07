@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+	
+	<property name= "target.dir" value="T:\javaDoc\FskEncoder\javadoc" />
+	
+    <target name="javadoc">
+    	
+    	<delete dir="${target.dir}" failonerror="no" />
+    	<mkdir dir="${target.dir}" />
+    	
+        <javadoc access="package" 
+        	author="false" 
+        	classpath="extensions/Mpf1Extension.jar;C:\Users\Stefan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.2\junit-jupiter-engine-5.6.2.jar;C:\Users\Stefan\.m2\repository\org\junit\platform\junit-platform-engine\1.6.2\junit-platform-engine-1.6.2.jar;C:\Users\Stefan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.2\junit-jupiter-api-5.6.2.jar;extensions/BinReaderExtension.jar;H:\GitRepository\FskEncoder-Extensions\FskEncoder-Extensions\target\test-classes;C:\Users\Stefan\.m2\repository\net\bytebuddy\byte-buddy\1.14.11\byte-buddy-1.14.11.jar;C:\Users\Stefan\.m2\repository\args4j\args4j\2.37\args4j-2.37.jar;C:\Users\Stefan\.m2\repository\org\mockito\mockito-junit-jupiter\5.10.0\mockito-junit-jupiter-5.10.0.jar;C:\Users\Stefan\.m2\repository\io\github\classgraph\classgraph\4.8.184\classgraph-4.8.184.jar;C:\Users\Stefan\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Stefan\.m2\repository\org\mockito\mockito-core\5.10.0\mockito-core-5.10.0.jar;target/test-classes;C:\Users\Stefan\.m2\repository\org\apache\logging\log4j\log4j-core\2.11.2\log4j-core-2.11.2.jar;C:\Users\Stefan\.m2\repository\org\junit\platform\junit-platform-commons\1.6.2\junit-platform-commons-1.6.2.jar;C:\Users\Stefan\.m2\repository\com\miglayout\miglayout\3.7.4\miglayout-3.7.4.jar;C:\Users\Stefan\.m2\repository\org\apache\logging\log4j\log4j-api\2.11.2\log4j-api-2.11.2.jar;C:\Users\Stefan\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.11\byte-buddy-agent-1.14.11.jar;C:\Users\Stefan\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;H:\GitRepository\FskEncoder-Extensions\FskEncoder-Extensions\lib\FskEncoderExtension.jar;extensions/Z80TrainerExtension.jar;C:\Users\Stefan\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;extensions/Ihx8ReaderExtension.jar" 
+        	destdir="${target.dir}" 
+        	doctitle="Fsk Encoder" 
+        	nodeprecated="false" 
+        	nodeprecatedlist="false" 
+        	noindex="false" 
+        	nonavbar="false" 
+        	notree="false" 
+        	packagenames="model,extension.protocol,extension.sound,view,source.ihx,target.support,source.ihx8,source.support,control.gui,target.z80trainer,extension.model,source.bin,extension.control,protocol,extension.encoder,view.gui,extension.factory,target.microprofessor1,application,application.support,sound,extension.view.gui,control.validator,extension.source,control,sound.support,extension.target,source.ihx.x8" 
+        	source="11" 
+        	sourcefiles="src/extension/package-info.java" 
+        	sourcepath="src;H:\GitRepository\FskEncoder-Extensions\FskEncoder-Extensions\src"
+        	splitindex="true" 
+        	use="true" 
+        	version="true"
+        />
+    </target>
+</project>
