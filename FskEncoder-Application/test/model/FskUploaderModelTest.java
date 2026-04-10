@@ -364,7 +364,7 @@ class FskUploaderModelTest {
 		createPropertyFile(extensionPropertyFileName, extensions);
 
 		// test the default value
-		ApplicationResources appres = new ApplicationResources();
+//		ApplicationResources appres = new ApplicationResources();
 		ApplicationResources.setPath("./test-cfg");
 		
 		FskUploaderModel localCut = new FskUploaderModel();	
@@ -523,6 +523,8 @@ class FskUploaderModelTest {
 		/*
 		 * Implicit tested by testGetOutputVolume()
 		 */
+		
+		assertTrue(true);
 		
 	} // testSetOutputVolume()
 

@@ -155,7 +155,6 @@ public class Application {
 	public static void main(String[] args) {	// NOSONAR
 		logger.trace("main(...)");
 		
-    	@SuppressWarnings("java:S2440")
         CliParameter cli = new CliParameter();				// NOSONAR
         CmdLineParser cliParser = new CmdLineParser(cli);	// NOSONAR
         
@@ -175,24 +174,7 @@ public class Application {
 		} // yrt
 
 		
-//		logger.trace("Current class_path: -> {}",
-//				new ClassGraph().scan()
-//					.getClasspath()
-//				);
-//
-//		for (Entry<String, ResourceList> dup :
-//	        new ClassGraph().scan()
-//	            .getAllResources()
-////	            .classFilesOnly()                        // Remove this for all resource types
-//	            .findDuplicatePaths()
-//	        ) {
-//			
-//			logger.trace(dup.getKey());                // Classfile path
-//		    
-//			for (Resource res : dup.getValue()) {
-//		    	logger.trace(" -> {}", res.getURI());   // Print Resource URI
-//		    }
-//		}		
+//		printClassPath();		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -210,6 +192,33 @@ public class Application {
 		});
 		
 	} // main(...)
+
+
+	/**
+	 * 
+	 */
+//	private static void printClassPath() {
+//		
+//		logger.trace("Current class_path: -> {}",
+//				new ClassGraph().scan()
+//					.getClasspath()
+//				);
+//
+//		for (Entry<String, ResourceList> dup :
+//	        new ClassGraph().scan()
+//	            .getAllResources()
+////	            .classFilesOnly()                        // Remove this for all resource types
+//	            .findDuplicatePaths()
+//	        ) {
+//			
+//			logger.trace(dup.getKey());                // Classfile path
+//		    
+//			for (Resource res : dup.getValue()) {
+//		    	logger.trace(" -> {}", res.getURI());   // Print Resource URI
+//		    }
+//		}
+//		
+//	} // printClassPath()
 	
 	
 } // ssalc

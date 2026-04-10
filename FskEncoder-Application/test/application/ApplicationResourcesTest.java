@@ -186,10 +186,10 @@ class ApplicationResourcesTest {
 	final void testAsString() {
 		LOGGER.info("testAsString()");
 
-		LOGGER.info("asString: {}", applicationResources.asString());
+		LOGGER.info("asString: {}", ApplicationResources.asString());
 
 		assertTrue(
-			applicationResources.asString().matches(
+			ApplicationResources.asString().matches(
 				"ApplicationResources [hashCode()=.*, null, null/FskEncoder.properties, null/Extension.properties]"
 			)
 		);

@@ -60,10 +60,19 @@ public abstract class MemoryMapGui extends ExtensionGui {
 	
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unused")
 	private Logger logger = LogManager.getLogger(MemoryMapGui.class.getName());
 
-	protected List<MemoryBlockDescription> memoryMap;
+	protected List<MemoryBlockDescription> memoryLayout;
+	
+	
+	protected void setMemoryLayout(List<MemoryBlockDescription> aMemoryLayout) {
+		logger.trace("setMemoryMap()");
+		
+		if(aMemoryLayout == null) throw new IllegalArgumentException("aMemoryLayout can't be null.");
+		
+		memoryLayout = aMemoryLayout;
+		
+	} // setMemoryMap()
 
 	
 } // ssalc

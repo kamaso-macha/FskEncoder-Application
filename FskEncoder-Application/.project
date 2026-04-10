@@ -26,5 +26,10 @@
 			<type>2</type>
 			<location>H:/GitSandbox/FskEncoder/dist</location>
 		</link>
+		<link>
+			<name>extensions</name>
+			<type>2</type>
+			<location>H:/GitSandbox/FskEncoder/dist/extensions</location>
+		</link>
 	</linkedResources>
 </projectDescription>

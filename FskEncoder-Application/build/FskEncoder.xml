@@ -13,8 +13,8 @@
 	<property name="version" value="${main.line}.${stream}"/>
 
 	<buildnumber file="${app.dir.defaultsRepo}/${targetName}/build.number"/>
-	<property name="build" value="${build.number}" />
 	
+	<property name="build" value="${build.number}" />
 	<property name="release" value ="${version}.${build}" />
 
 	
@@ -127,6 +127,8 @@
     		>
         	
         </jar>
+		
+		<copy file="${dir.dist}/bin/${extensionName}" tofile="${dir.dist}/bin/${targetName}Extension.jar" />
 
 	</target>
 	

@@ -56,8 +56,8 @@ import org.apache.logging.log4j.Logger;
  * <p>
  * Description:<br>
  * Keeps at least one or multiple MemoryRegion objects as a complete memory image. 
- * On request it creates a brief view of the entire memory layout by creating a list of MemoryBlockDescription objects 
- * and/or returns a specific MemoryRegion object.
+ * On request it creates a brief view of the entire memory layout by creating a list 
+ * of MemoryBlockDescription objects and/or returns a specific MemoryRegion object.
  * 
  * <p>
  * @author Stefan

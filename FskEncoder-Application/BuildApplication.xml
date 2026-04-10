@@ -36,11 +36,11 @@
 			excludes="*.zip cfg/FskEncoder.properties cfg/*Extension.properties cfg/Plugin.properties bin/FskEncoder-all.bat bin/*Extension.bat"
 		/>
 
-		<zip destfile="${dir.dist}/${app.target}"
+		<!--zip destfile="${dir.dist}/${app.target}"
 			update="yes"
 			basedir="${app.dir.doc}"
 			includes="UG.FskEncoder.pdf"
-		/>
+		/ -->
 
 	</target>
 	
