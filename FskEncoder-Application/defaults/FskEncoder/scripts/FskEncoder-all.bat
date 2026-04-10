@@ -30,7 +30,7 @@ rem
 set CLASS_PATH=%CLASS_PATH%;../extensions/BinReaderExtension.jar;
 set CLASS_PATH=%CLASS_PATH%;../extensions/Ihx8ReaderExtension.jar;
 set CLASS_PATH=%CLASS_PATH%;../extensions/Mpf1Extension.jar;
-set CLASS_PATH=%CLASS_PATH%;../extensions/Z80TrainerExtension.jar;
+set CLASS_PATH=%CLASS_PATH%;../extensions/Z80TrainerMonitorExtension.jar;
 
 set L4J_PATH=../cfg/log4j2.xml
 set L4J_CONF="log4j.configurationFile=%L4J_PATH%"

@@ -119,7 +119,7 @@ public class Application {
 
 		StatusBarUpdate statusBarUpdate = new StatusBarUpdate(workflowEngine);
 
-		workflowEngine.setTargetSystem(null);
+		workflowEngine.setTargetSystem();
 
 		OutputDeviceController outputDeviceController = new OutputDeviceController(workflowEngine, (OutputDeviceControllerModel) model);	
 		InputFileController inputFileController = new InputFileController(workflowEngine, (InputFileControllerModel) model, mainPanel);

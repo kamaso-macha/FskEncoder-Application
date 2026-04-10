@@ -182,6 +182,18 @@ public abstract class BackgroundTaskProtokol extends BackgroundTask<Void, Void> 
 	public void setStartAddress(long startAddress) {
 		throw new IllegalAccessError("Unsupported method");	// NOSONAR
 	}
+
+
+	@Override
+	public String toString() {
+		
+		return "BackgroundTaskProtokol [checksumCalculator=" + checksumCalculator + ", encoder="
+				+ encoder + ", dataBuffer=" + dataBuffer + ", soundsampleBuffer=" + soundsampleBuffer
+				+ ", soundSampleBufferSize=" + soundSampleBufferSize + ", fullProgress=" + fullProgress
+				+ ", currentProgress=" + currentProgress + ", " 
+				+ super.toString() + "]";
+		
+	} // toString()
 	
 	
 	/**
@@ -190,14 +202,6 @@ public abstract class BackgroundTaskProtokol extends BackgroundTask<Void, Void> 
 	 * @return
 	 * a string representing the current state of this object. 
 	 */
-	@Override
-	public String toString() {
-		return "BackgroundTaskProtokol [checksumCalculator=" + checksumCalculator + ", encoder=" + encoder
-				+ ", dataBuffer=" + dataBuffer + ", soundsampleBuffer=" + soundsampleBuffer + ", soundSampleBufferSize="
-				+ soundSampleBufferSize + ", isRunning=" + isRunning + ", currentProgress=" + currentProgress 
-				+ ", " + super.toString()
-				+ "]";
-	}
 
 
 } // ssalc

@@ -411,6 +411,8 @@ public class WorkflowEngine implements StatusMessenger {
 			TargetSystemExtensionFactory factory = PlugInFactory.getTargetSystemExtensionFactory(targetSystemProviderClassName); // NOSONAR
 			targetSystemExtensionDao = factory.getTargetSystemExtension((StatusMessenger)this); // NOSONAR
 			
+			logger.error("targetSystemExtensionDao: {}", targetSystemExtensionDao);
+			
 			targetController = targetSystemExtensionDao.CONTROL;
 			
 			JPanel targetSystemPanel = targetController.createLayout(); // NOSONAR
@@ -433,24 +435,26 @@ public class WorkflowEngine implements StatusMessenger {
 	 * : name of the currently selected target system.
 	 * 
 	 */
+	
+	// TODO: Write test
+	
+	public void setTargetSystem() {
+		logger.trace("setTargetSystem()");
+		
+		setTargetSystem(model.getTargetSystemName());
+
+	} //setTargetSystem()
+
+		
+	
+	// TODO: Adopt test to new functionality
+	
 	public void setTargetSystem(String aName) {
 		logger.trace("setTargetSystem(): aName = {}", aName);
 
-		String targetSystemName;
-		
-		if(aName == null) {
-			
-			targetSystemName = model.getTargetSystemName();
+		model.setTargetSystemName(aName);
+		String targetSystemName = aName;
 
-		}
-		else {
-			
-			model.setTargetSystemName(aName);
-			targetSystemName = aName;
-			
-		}
-					
-		
 		if( ! targetSystemName.equals(NOT_DEFINED)) {
 			setReaderPlugin(targetSystemName);
 			setTargetPlugin(targetSystemName);

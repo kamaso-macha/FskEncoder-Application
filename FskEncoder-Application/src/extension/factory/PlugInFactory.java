@@ -98,6 +98,8 @@ public class PlugInFactory {
 		
 		Class<?> candidate = Class.forName(aProviderClassName);
 		
+		logger.debug("candidate: {}", candidate);
+		
 		return (TargetSystemExtensionFactory) candidate.getConstructor().newInstance();
 		
 	} // getTargetSystemExtensionFactory()
