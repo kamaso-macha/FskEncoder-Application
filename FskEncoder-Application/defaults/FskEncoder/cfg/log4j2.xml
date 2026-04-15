@@ -67,12 +67,17 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
+        <Logger name="control.gui.OutputDeviceController" level="info" additivity="false">
+           <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+        
         <Logger name="extension" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-        <Logger name="extension.encoder" level="info" additivity="false">
+        <Logger name="extension.encoder.Encoder" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -102,7 +107,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
 
-        <Logger name="protocol" level="info" additivity="false">
+        <Logger name="protocol" level="trace" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
