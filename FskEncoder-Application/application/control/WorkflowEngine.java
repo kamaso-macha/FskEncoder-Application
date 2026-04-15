@@ -40,6 +40,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import control.gui.CompileAndUploadAction;
 import control.gui.InputFileController;
 import control.gui.MainWindowController;
 import control.gui.OutputDeviceController;
@@ -101,11 +102,13 @@ public class WorkflowEngine implements StatusMessenger {
 	
 	protected MainWindowController mainWindowCallback;
 
+	protected CompileAndUploadAction compileAndUploadAction;
 	protected OutputDeviceController outputDeviceSelectionCallback;
 	protected InputFileController inputFileController;
 	protected ReaderExtensionControl readerController;
 	protected TargetSystemExtensionControl targetController;
 	protected StatusBarUpdate statusBarCallback;
+
 		
 	
 	/**
@@ -227,6 +230,19 @@ public class WorkflowEngine implements StatusMessenger {
 	
 	
 	/**
+	 * @param compileAndUploadAction
+	 */
+	public void registerCallback(CompileAndUploadAction aCompileAndUploadAction) {
+		logger.trace("registerCallback(): aCompileAndUploadAction = {}", aCompileAndUploadAction);
+		
+		if(aCompileAndUploadAction == null) throw new IllegalArgumentException("aCompileAndUploadAction can't be null.");
+
+		compileAndUploadAction = aCompileAndUploadAction;
+		
+	} // registerCallback()
+
+
+	/**
 	 * 
 	 * Register the given controller as call back.
 	 * 
@@ -326,6 +342,11 @@ public class WorkflowEngine implements StatusMessenger {
 			
 			InputReaderExtensionFactory factory = PlugInFactory.getInputReaderExtensionFactory(inputReaderProviderClassNeme); // NOSONAR
 			
+			if(factory == null) {
+				logger.warn("No reader plug-in set.");
+				return;
+			}
+			
 			inputReaderExtensionDao = factory.getInputReaderExtensions((StatusMessenger)this);	// NOSONAR			
 			
 			readerController = inputReaderExtensionDao.CONTROL;	
@@ -409,9 +430,13 @@ public class WorkflowEngine implements StatusMessenger {
 		try {
 			
 			TargetSystemExtensionFactory factory = PlugInFactory.getTargetSystemExtensionFactory(targetSystemProviderClassName); // NOSONAR
-			targetSystemExtensionDao = factory.getTargetSystemExtension((StatusMessenger)this); // NOSONAR
+
+			if(factory == null) {
+				logger.warn("No target system plug-in set.");
+				return;
+			}
 			
-			logger.error("targetSystemExtensionDao: {}", targetSystemExtensionDao);
+			targetSystemExtensionDao = factory.getTargetSystemExtension((StatusMessenger)this); // NOSONAR	
 			
 			targetController = targetSystemExtensionDao.CONTROL;
 			
@@ -461,6 +486,11 @@ public class WorkflowEngine implements StatusMessenger {
 			
 			if(outputDeviceSelectionCallback != null) {
 				outputDeviceSelectionCallback.setOutputDevice();
+			}
+			
+			if(compileAndUploadAction != null) {
+				compileAndUploadAction.setProtocol(getProtocol());
+				compileAndUploadAction.setSoundPlayer(getSoundPlayer());
 			}
 			
 			setStatusMessage("");

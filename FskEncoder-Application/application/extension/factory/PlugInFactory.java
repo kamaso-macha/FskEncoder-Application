@@ -35,6 +35,9 @@ import java.lang.reflect.InvocationTargetException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import control.WorkflowEngine;
+import model.FskUploaderModel;
+
 /**
  * Responsibilities:<br>
  * Supporter class who creates the extension factories needed for the plug-in components.
@@ -96,6 +99,9 @@ public class PlugInFactory {
 		
 		logger.trace("getTargetSystemExtensionFactory(): aProviderClassName = {}", aProviderClassName);
 		
+		if(aProviderClassName.equals(FskUploaderModel.NOT_DEFINED))
+			return null;
+		
 		Class<?> candidate = Class.forName(aProviderClassName);
 		
 		logger.debug("candidate: {}", candidate);
@@ -132,6 +138,9 @@ public class PlugInFactory {
 		if(aProviderClassName.isBlank()) throw new IllegalArgumentException("aProviderClassName cant be blank");
 		
 		logger.trace("getInputReaderExtensionFactory(): aProviderClassName = {}", aProviderClassName);
+		
+		if(aProviderClassName.equals(FskUploaderModel.NOT_DEFINED))
+			return null;
 		
 		Class<?> candidate = Class.forName(aProviderClassName);
 		

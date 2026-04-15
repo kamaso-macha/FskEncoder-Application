@@ -103,6 +103,7 @@ public class CompileAndUploadAction implements StatusListener, ActionListener, P
 		logger.trace("CompileAndUploadAction(): aWorkFlowEngine = {}", aWorkFlowEngine);
 		
 		workflowEngine = aWorkFlowEngine;
+		workflowEngine.registerCallback(this);
 		
 		compileAndUploadPanel = new CompileAndUploadGui(this);
 

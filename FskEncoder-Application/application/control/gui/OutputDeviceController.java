@@ -310,9 +310,10 @@ public class OutputDeviceController implements ActionListener, ChangeListener, F
 	 * 
 	 */
 	public void setOutputDevice() {
-		logger.trace("setOutputDevice()");
 		
 		String outDevName = model.getOutputDeviceName();
+		logger.trace("setOutputDevice(): outDevName: {}", outDevName);
+
 		outDevPanel.setTxtOutputDevice(outDevName);
 
 		try {
