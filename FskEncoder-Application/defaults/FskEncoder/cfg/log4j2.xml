@@ -17,12 +17,12 @@
 
     <Loggers>
        
-        <Logger name="application" level="trace" additivity="false">
+        <Logger name="application" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
 
-        <Logger name="control" level="trace" additivity="false">
+        <Logger name="control" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -37,7 +37,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-        <Logger name="control.WorkflowEngine" level="trace" additivity="false">
+        <Logger name="control.WorkflowEngine" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -52,7 +52,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
 
-        <Logger name="control.gui.MainWindowController" level="trace" additivity="false">
+        <Logger name="control.gui.MainWindowController" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -67,12 +67,12 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-        <Logger name="encoder" level="info" additivity="false">
+        <Logger name="extension" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-        <Logger name="extension" level="info" additivity="false">
+        <Logger name="extension.encoder" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -102,7 +102,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
 
-        <Logger name="protocol" level="trace" additivity="false">
+        <Logger name="protocol" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -142,7 +142,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-         <Logger name="target" level="trace" additivity="false">
+         <Logger name="target" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -152,7 +152,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-         <Logger name="target.z80trainer" level="all" additivity="false">
+         <Logger name="target.z80trainer" level="info" additivity="false">
            <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Logger>
@@ -162,7 +162,7 @@
             <AppenderRef ref="DebugFile"/>
         </Logger>
         
-        <Root level="all">
+        <Root level="info">
             <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="DebugFile"/>
         </Root>

@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src">
+	<classpathentry kind="src" output="target/classes" path="application">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/test-classes" path="test">
+	<classpathentry kind="src" path="source_binReader"/>
+	<classpathentry kind="src" path="source_ihxReader"/>
+	<classpathentry kind="src" path="target_mpf1"/>
+	<classpathentry kind="src" path="target_z80trainer"/>
+	<classpathentry kind="src" output="target/test-classes" path="test_app">
+		<attributes>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="test_ext">
+		<attributes>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="testsupport">
 		<attributes>
 			<attribute name="test" value="true"/>
 		</attributes>
@@ -21,7 +35,6 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="extensions"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -33,10 +46,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="extensions/BinReaderExtension.jar"/>
-	<classpathentry kind="lib" path="extensions/Ihx8ReaderExtension.jar"/>
-	<classpathentry kind="lib" path="extensions/Mpf1Extension.jar"/>
-	<classpathentry kind="lib" path="extensions/Z80TrainerMonitorExtension.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/FskEncoder-Extensions"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

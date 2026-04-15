@@ -89,6 +89,8 @@ public abstract class ChecksumCalculator {
 	
 	public ChecksumCalculator(final int aMask) {
 		
+		logger.trace(String.format("ChecksumCalculator(): aMask: 0x04X", aMask));
+
 		if(aMask == 0) {
 			mask = -1;
 		}
