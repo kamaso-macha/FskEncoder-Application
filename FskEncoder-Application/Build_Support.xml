@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="Build Application Support">
+<project name="Build Support">
 
 	<taskdef resource="net/sf/antcontrib/antlib.xml">
 	  <classpath>
@@ -9,8 +9,7 @@
 	
 	<property name="main.line"				value="1" />
 
-	<property name="app.projectname"		value="FskEncoder-Application"/>
-	<property name="ext.projectname"		value="FskEncoder-Extensions"/>
+	<property name="projectName"			value="FskEncoder-Application"/>
 
 	<property name="dir.mavenRepo"			value="C:/Users/Stefan/.m2/repository" />
 
@@ -92,7 +91,7 @@
 			<manifest file="@{location}/MANIFEST.MF">
 		        <attribute name="Manifest-Version" 	value="1.0"/>
 		        <attribute name="Built-By" 			value="${user.name}"/>
-		        <attribute name="Project" 			value="${projectname}"/>
+		        <attribute name="Project" 			value="${projectName}"/>
 		        <attribute name="Modul" 			value="${targetName}"/>
 				<attribute name="Main-Line"			value="${lineNbr}"/>
 				<attribute name="Stream"			value="${streamNbr}"/>

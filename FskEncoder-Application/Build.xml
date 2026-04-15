@@ -38,12 +38,6 @@
 	
 	<target name="Bild Extensions" description="Build all extensions" >
 		
-		<tstamp>
-			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
-		</tstamp>
-
-		<echo message="${current.time}" />      
-		
 		<for param="file">
 			
 			<path>
