@@ -16,3 +16,5 @@ org.eclipse.*
 package-info.java
 /bin/
 /extensions/
+/_attic_build/
+/.settings/
