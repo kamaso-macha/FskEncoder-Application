@@ -7,19 +7,21 @@
 	  </classpath>
 	</taskdef>
 	
+	<property name="main.line"				value="1" />
 
-    <property name="projectname"		value="FskEncoder-Application"/>
-	<property name="main.line"			value="1" />
+	<property name="app.projectname"		value="FskEncoder-Application"/>
+	<property name="ext.projectname"		value="FskEncoder-Extensions"/>
 
-	<property name="app.dir.projectRoot"	value="H:/GitRepository/FskEncoder-Application/FskEncoder-Application" />
+	<property name="dir.mavenRepo"			value="C:/Users/Stefan/.m2/repository" />
+
 	<property name="dir.dist"				value="H:/GitSandbox/FskEncoder/dist" />
-
-	<property name="app.dir.classesRoot"	value="${app.dir.projectRoot}/target/classes"/>
-	<property name="app.dir.sourceRoot"		value="${app.dir.projectRoot}/src"/>
-	<property name="app.dir.mavenRepo"		value="C:/Users/Stefan/.m2/repository" />
-	<property name="app.dir.defaultsRepo"	value="${app.dir.projectRoot}/defaults" />
-	<property name="app.dir.extensions"		value="${dir.dist}/extensions" />
-	<property name="app.dir.doc"			value="${app.dir.projectRoot}/doc/userGuide/UG.FskEncoder" />
+	<property name="dir.dist.bin"			value="${dir.dist}/bin" />
+	<property name="dir.dist.cfg"			value="${dir.dist}/cfg" />
+	<property name="dir.dist.extensions"	value="${dir.dist}/extensions" />
+	<property name="dir.dist.lib"			value="${dir.dist}/lib" />
+	
+	<property name="dir.projectRoot"		value="H:/GitRepository/FskEncoder-Application/FskEncoder-Application" />
+	<property name="dir.defaultsRepo"		value="${dir.projectRoot}/defaults" />
 
 	
 	<macrodef name="replaceLibrary" >
@@ -29,7 +31,7 @@
 		
 		<sequential>
 		
-			<replaceFile sourcePath="@{sourcePath}" destPath="${dir.dist}/lib/" fileName="@{fileName}" />
+			<replaceFile sourcePath="@{sourcePath}" destPath="${dir.dist.lib}/" fileName="@{fileName}" />
 		
 		</sequential>
 	
@@ -45,7 +47,7 @@
 		
 			<echo message="candidate: @{sourcePath}/@{fileName}"/>
 
-			<replaceFile sourcePath="@{sourcePath}" destPath="${dir.dist}/cfg/" fileName="@{fileName}" />
+			<replaceFile sourcePath="@{sourcePath}" destPath="${dir.dist.cfg}/" fileName="@{fileName}" />
 		
 		</sequential>
 	

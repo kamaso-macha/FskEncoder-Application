@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="build all" name="FskEncoder">
+<project default="Build all" name="FskEncoder">
 
-	<include file="../ApplicationBuildSupport.xml" />
+	<include file="../Build_Support.xml" />
 	
 	<property name="targetName" 		value="${ant.project.name}" />
-	
-	<property name="app.dir.scriptsRepo"	value="${app.dir.defaultsRepo}/${targetName}/scripts" />
-	<property name="app.dir.configRepo"		value="${app.dir.defaultsRepo}/${targetName}/cfg" />
 
-	<property name="stream" value="0"/>
+	<property name="stream"				value="0"/>
 	
-	<property name="version" value="${main.line}.${stream}"/>
-
-	<buildnumber file="${app.dir.defaultsRepo}/${targetName}/build.number"/>
-	
-	<property name="build" value="${build.number}" />
-	<property name="release" value ="${version}.${build}" />
+	<property name="dir.scriptsRepo"	value="${dir.defaultsRepo}/${targetName}/scripts" />
+	<property name="dir.configRepo"		value="${dir.defaultsRepo}/${targetName}/cfg" />
+	<property name="dir.classesRoot"	value="${dir.projectRoot}/target/classes" />
 
 	
-	<target name="build all">
+	<buildnumber file="${dir.defaultsRepo}/${targetName}/build.number"/>
+	
+	<property name="version"	value="${main.line}.${stream}"/>
+	<property name="build"		value="${build.number}" />
+	<property name="release"	value ="${version}.${build}" />
+
+	
+	<target name="Build all">
 		
 		<tstamp>
 			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
@@ -26,155 +27,72 @@
 
 		<echo message="Building version ${release} at ${current.time}" />      
 		
-		<antcall target="${targetName}" />				
-		<antcall target="copy config" />
-		<antcall target="Extension jar" />
+		<antcall target="Clean" />
+		<antcall target="Create Jar" />				
+		<antcall target="Copy config" />
 
 	</target>
 	
 	
-	<target name="FskEncoder">
+	<target name="Clean" description="Deletes ALL files and folders in the 'dist' directory" >
+		
+		<delete file="${dir.dist.bin}/${targetName}.jar"		failonerror="no" />
+
+		<delete file="${dir.dist.bin}/${targetName}.bat"		failonerror="no" />
+		<delete file="${dir.dist.bin}/${targetName}-all.bat"	failonerror="no" />
+
+		<delete file="${dir.dist.bin}/miglayout-3.7.4.jar"		failonerror="no" />
+		<delete file="${dir.dist.bin}/log4j-api-2.11.2.jar"		failonerror="no" />
+		<delete file="${dir.dist.bin}/log4j-core-2.11.2.jar"	failonerror="no" />
+		<delete file="${dir.dist.bin}/args4j-2.37.jar"			failonerror="no" />
+
+		<delete file="${dir.dist.cfg}/Plugin.properties"		failonerror="no" />
+		<delete file="${dir.dist.cfg}/FskEncoder.properties"	failonerror="no" />
+		<delete file="${dir.dist.cfg}/log4j2.xml"				failonerror="no" />
+		
+	</target>
+	
+
+	<target name="Create Jar">
 		
 		<echo message="release: ${release}" />
 		
-		<replaceFile sourcepath="${app.dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}.bat" />
-		<replaceFile sourcepath="${app.dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}-all.bat" />
+		<replaceFile sourcepath="${dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}.bat" />
+		<replaceFile sourcepath="${dir.scriptsRepo}" destPath="${dir.dist}/bin/" fileName="${targetName}-all.bat" />
 
 		<mkManifest 
-			location="${app.dir.defaultsRepo}/${targetName}" 
+			location="${dir.defaultsRepo}/${targetName}" 
 			version="${release}" 
 			timestamp="${current.time}" 
 		/>
 		
-		<delete file="${dir.dist}/${targetName}.jar" />
+		<delete file="${dir.dist.bin}/${targetName}.jar" failonerror="no" />
 		
-        <jar destfile="${dir.dist}/bin/${targetName}.jar"
-			basedir="${app.dir.classesRoot}"
-			excludes="source/bin/**/* source/ihx/**/* target/**/*"
-			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+        <jar destfile="${dir.dist.bin}/${targetName}.jar"
+			basedir="${dir.classesRoot}"
+			excludes="source/**/* target/**/*"
+			manifest="${dir.defaultsRepo}/${targetName}/MANIFEST.MF"
     		>
         	
         </jar>
 
-		<delete file="${dir.dist}/${targetName}Extension.jar" />
-		
-        <jar destfile="${dir.dist}/bin/${targetName}Extension.jar"
-			basedir="${app.dir.classesRoot}"
-			includes="extension/**"
-			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
-    		>
-        	
-        </jar>
-
-		<replaceLibrary sourcepath="${app.dir.mavenRepo}/com/miglayout/miglayout/3.7.4/"				fileName="miglayout-3.7.4.jar"/>
-		<replaceLibrary sourcepath="${app.dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
-		<replaceLibrary sourcepath="${app.dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
-		<replaceLibrary sourcepath="${app.dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
-		<!-- replaceLibrary sourcepath="${app.dir.mavenRepo}/io/github/classgraph/classgraph/4.8.184/"		fileName="classgraph-4.8.184.jar"/ -->
+		<replaceLibrary sourcepath="${dir.mavenRepo}/com/miglayout/miglayout/3.7.4/"				fileName="miglayout-3.7.4.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
+		<replaceLibrary sourcepath="${dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
 
 	</target>
 	
-	<target name="copy config" >
+	
+	<target name="Copy config" >
 		
 		<echo message="release: ${release}" />
 
-		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Empty.properties" />
-		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="Plugin.properties" />
-		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="FskEncoder.properties" />
-		<replaceConfig sourcePath="${app.dir.configRepo}" fileName="log4j2.xml" />
+		<replaceConfig sourcePath="${dir.configRepo}" fileName="Plugin.properties" />
+		<replaceConfig sourcePath="${dir.configRepo}" fileName="FskEncoder.properties" />
+		<replaceConfig sourcePath="${dir.configRepo}" fileName="log4j2.xml" />
 
 	</target>
 	
 	
-	<target name="pack application">
-	
-		<echo message="release: ${release}" />
-
-		<delete file="${dir.dist}/${targetName}.zip" failonerror="no" />
-		
-		<zip destfile="${dir.dist}/${targetName}.zip"
-			basedir="${dir.dist}"
-			includes="bin/* cfg/Empty.properties lib/"
-		/>
-		
-	</target>
-	
-	
-	<target name="Extension jar">
-		
-		<echo message="release: ${release}" />
-
-		<property name="extensionName" value="${targetName}Extension-${release}.jar" />
-		<property name="dir.extension" value="${app.dir.projectRoot}/target/tmp" />
-	
-		<mkManifest 
-			location="${app.dir.defaultsRepo}/${targetName}" 
-			version="${release}" 
-			timestamp="${current.time}" 
-		/>
-		
-		<delete file="${dir.dist}/${extensionName}" failonerror="no" />
-		
-		<delete dir="${dir.extension}" failonerror="no" />
-		<mkdir dir="${dir.extension}" />
-		
-		<copydir src="${app.dir.classesRoot}/extension" dest="${dir.extension}/extension" />
-		<copydir src="${app.dir.sourceRoot}/extension"  dest="${dir.extension}/extension" />
-		
-        <jar destfile="${dir.dist}/bin/${extensionName}"
-			basedir="${dir.extension}"
-			manifest="${app.dir.defaultsRepo}/${targetName}/MANIFEST.MF"
-    		>
-        	
-        </jar>
-		
-		<copy file="${dir.dist}/bin/${extensionName}" tofile="${dir.dist}/bin/${targetName}Extension.jar" />
-
-	</target>
-	
-	
-	
-	<target name="Extension javadoc">
-		
-		<echo message="release: ${release}" />
-
-		<property name="dir.log4j" value="C:/Users/Stefan/.m2/repository/org/apache/logging/log4j" />
-
-		<echo message="app.dir.sourceRoot = ${app.dir.sourceRoot}" />
-		<echo message="app.dir.docRoot    = ${app.dir.docRoot}" />
-		<echo message="dir.log4j          = ${dir.log4j}" />
-
-		<delete dir="${app.dir.docRoot}/extension" failonerror="no" />
-		
-		<javadoc 
-			packagenames="extension.*" 
-			sourcepath="${app.dir.sourceRoot}"
-			destdir="${app.dir.docRoot}/extension" 
-			version="true"
-			defaultexcludes="yes"
-			excludepackagenames="org.*"
-			windowtitle="Fsk Encoder Extensions"
-		>
-	
-			<classpath>
-				<fileset dir="${dir.log4j}/log4j-api/2.11.2">
-					<include name="*.jar"/>
-				</fileset>
-				<fileset dir="${dir.log4j}/log4j-core/2.11.2">
-					<include name="*.jar"/>
-				</fileset>
-			</classpath>
-
-			<doctitle><![CDATA[Fsk Encoder Extension Interface r${release}]]></doctitle>
-			<bottom>
-			<![CDATA[Copyright 2025. All Rights Reserved.]]>
-			</bottom>
-			
-		</javadoc>
-	
-		<echo message="java doc has been generated!" />
-
-	</target>
-	
-
 </project>

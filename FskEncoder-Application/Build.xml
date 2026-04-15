@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="Build Distribution" name="Build_Distribution">
+	
+	<!--
+	
+		Outcome:	FskEncoder-all.zip : App and all extensions
+		
+	-->
+
+	<include file="./Build_Support.xml" />
+
+	<property name="distributionName" 	value="FskEncoder-all" />
+	<property name="applicationName" 	value="FskEncoder" />
+	
+	
+	<target name="Build Distribution" description="Builds the application and all extensions">
+	
+		<antcall target="Build Application" />
+		
+		<antcall target="Bild Extensions" />
+
+		<antcall target="clean_distribution" />
+		<antcall target="Pack distribution" />
+		
+	</target>
+
+	
+	<target name="Build Application" description="Builds the application only">
+	
+		<echo message=" Calling 'Build all' of FskEncoder.xml"/>
+		<ant antfile="./build/FskEncoder.xml" target="Build all"/>
+		
+		<antcall target="clean_application" />
+		<antcall target="Pack Application" />
+	
+	</target>
+
+	
+	<target name="Bild Extensions" description="Build all extensions" >
+		
+		<tstamp>
+			<format property="current.time" pattern="yyyy.MM.dd HH:mm:ss" />
+		</tstamp>
+
+		<echo message="${current.time}" />      
+		
+		<for param="file">
+			
+			<path>
+				<fileset dir="${dir.projectRoot}/build" includes="*.xml" excludes="FskEncoder.xml"/>
+			</path>
+
+			<sequential>
+			
+				<local name="name"/>
+				<basename file="@{file}" property="name" />
+				
+				<echo message=" Calling 'Build all' of @{file}"/>
+				<ant antfile="@{file}" target="Build all"/>
+				
+			</sequential>
+			
+		</for>     
+
+	</target>
+
+	
+	<target name="Pack distribution" description="Creates the 'FskEncoder-all.zip' file">
+		
+		<zip destfile="${dir.dist}/${distributionName}.zip"
+			basedir="${dir.dist}"
+			excludes="*.zip"
+		/>
+		
+	</target>
+
+	
+	<target name="Pack Application" description="Creates the 'FskEncoder.zip' file">
+		
+		<zip destfile="${dir.dist}/${applicationName}.zip"
+			basedir="${dir.dist}"
+			excludes="*.zip bin/FskEncoder-all.bat extensions/**"
+		/>
+		
+	</target>
+
+	
+	<target name="clean_distribution" description="Deletes ALL files and folders in the 'dist' directory" >
+		
+		<delete file="${dir.dist}/${distributionName}.zip" failonerror="no" />
+			
+	</target>
+	
+
+	<target name="clean_application" description="Deletes ALL files and folders in the 'dist' directory" >
+		
+		<delete file="${dir.dist}/${applicationName}.zip" failonerror="no" />
+			
+	</target>
+	
+
+</project>
