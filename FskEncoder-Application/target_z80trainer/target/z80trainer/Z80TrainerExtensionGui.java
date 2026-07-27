@@ -145,12 +145,12 @@ public class Z80TrainerExtensionGui extends ExtensionGui {
 	
 	
 	
-	public String getTxtProgrammNumberText() { return txtProgramNumber.getText(); }
+	public String getTxtProgramNumberText() { return txtProgramNumber.getText(); }
 
 	public void setLblTargetText(final String aText) { lblTarget.setText(aText); }
 	
-	public void setTxtProgrammNumberText(final String aText) { 
-		logger.trace("setTxtProgrammNumberText(): aText = {}", aText);
+	public void setTxtProgramNumberText(final String aText) { 
+		logger.trace("setTxtProgramNumberText(): aText = {}", aText);
 		
 		txtProgramNumber.setText(aText);
 		

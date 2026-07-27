@@ -230,7 +230,11 @@ public class WorkflowEngine implements StatusMessenger {
 	
 	
 	/**
-	 * @param compileAndUploadAction
+	 * 
+	 * Register the given controller as call back.
+	 * 
+	 * @param aCompileAndUploadAction
+	 * : the controller which must be registered as callback.
 	 */
 	public void registerCallback(CompileAndUploadAction aCompileAndUploadAction) {
 		logger.trace("registerCallback(): aCompileAndUploadAction = {}", aCompileAndUploadAction);
@@ -402,11 +406,9 @@ public class WorkflowEngine implements StatusMessenger {
 	 */
 	@Override
 	public void setStatusMessage(String aStatusMessage) {
-		logger.trace("setStatusMessage(): aStatusMessage = {}", aStatusMessage);
+		logger.trace("setStatusMessage(): aStatusMessage = ~{}~", aStatusMessage);
 		
 		statusBarCallback.setStatusMessage(aStatusMessage);
-		
-		// TODO Display status message for a while than erase it.
 		
 	} // setStatusMessage()
 
@@ -454,15 +456,9 @@ public class WorkflowEngine implements StatusMessenger {
 
 	/**
 	 * 
-	 * Set the name of the currently selected target system.
-	 * 
-	 * @param aName
-	 * : name of the currently selected target system.
-	 * 
+	 * Set the name of the target system which is currently defined in the properties file.
+	 *
 	 */
-	
-	// TODO: Write test
-	
 	public void setTargetSystem() {
 		logger.trace("setTargetSystem()");
 		
@@ -472,36 +468,42 @@ public class WorkflowEngine implements StatusMessenger {
 
 		
 	
-	// TODO: Adopt test to new functionality
-	
+	/**
+	 * 
+	 * Set the name of the currently selected target system.
+	 * 
+	 * @param aName
+	 * Name of the currently selected target system.
+	 * 
+	 */
 	public void setTargetSystem(String aName) {
 		logger.trace("setTargetSystem(): aName = {}", aName);
 
+		String targetSystemName = aName != null ? aName : NOT_DEFINED;
 		model.setTargetSystemName(aName);
-		String targetSystemName = aName;
 
-		if( ! targetSystemName.equals(NOT_DEFINED)) {
-			setReaderPlugin(targetSystemName);
-			setTargetPlugin(targetSystemName);
-			
-			if(outputDeviceSelectionCallback != null) {
-				outputDeviceSelectionCallback.setOutputDevice();
-			}
-			
-			if(compileAndUploadAction != null) {
-				compileAndUploadAction.setProtocol(getProtocol());
-				compileAndUploadAction.setSoundPlayer(getSoundPlayer());
-			}
-			
-			setStatusMessage("");
-		}
-		else {
-			// TODO: set GUI state
-//			mainWindowCallback.setGuiState(GuiState.INACTIVE);			
+		setReaderPlugin(targetSystemName);
+		setTargetPlugin(targetSystemName);
+
+		logger.info("targetSystemName: {}, outputDeviceSelectionCallback: {}, compileAndUploadAction: {}", 
+			targetSystemName
+			, outputDeviceSelectionCallback
+			, compileAndUploadAction
+		);
+		
+		
+		if(outputDeviceSelectionCallback != null) {
+			outputDeviceSelectionCallback.setOutputDevice();
 		}
 		
+		if(compileAndUploadAction != null) {
+			compileAndUploadAction.setProtocol(getProtocol());
+			compileAndUploadAction.setSoundPlayer(getSoundPlayer());
+		}
+		
+		setStatusMessage("");
+
 		mainWindowCallback.setTitle();
-		
 	
 	} // setTargetSystem()
 

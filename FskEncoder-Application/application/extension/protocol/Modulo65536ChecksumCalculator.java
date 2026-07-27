@@ -69,9 +69,9 @@ public class Modulo65536ChecksumCalculator extends ChecksumCalculator {
 
 	/**
 	 * Specific algorithm:
-	 * 1. The given integer is truncated to a byte value by applying the mask 0x0FFFF.
+	 * 1. The given integer is truncated to a word value by applying the mask 0x0FFFF.
 	 * 2. The resulting value is added to the current value of chkSum.
-	 * 3. The new checkSum is truncated to a byte value by applying the mask 0x0FFSFF.
+	 * 3. The new checkSum is truncated to a byte value by applying the mask 0x0FFFF.
 	 */
 	@Override
 	public void sumUp(int aValue) { 

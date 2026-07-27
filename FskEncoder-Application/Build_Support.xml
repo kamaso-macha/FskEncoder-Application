@@ -18,7 +18,9 @@
 	<property name="dir.dist.cfg"			value="${dir.dist}/cfg" />
 	<property name="dir.dist.extensions"	value="${dir.dist}/extensions" />
 	<property name="dir.dist.lib"			value="${dir.dist}/lib" />
-	
+
+	<property name="dir.dist.dev"			value="${dir.dist}/dev" />
+
 	<property name="dir.projectRoot"		value="H:/GitRepository/FskEncoder-Application/FskEncoder-Application" />
 	<property name="dir.defaultsRepo"		value="${dir.projectRoot}/defaults" />
 

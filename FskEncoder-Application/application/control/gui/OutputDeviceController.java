@@ -113,7 +113,7 @@ public class OutputDeviceController implements ActionListener, ChangeListener, F
 			outDevPanel = new OutputDeviceGui(this);
 			
 		} catch (InvalidAttributeValueException e) {
-			// TODO Auto-generated catch block
+			logger.error("InvalidAttributeValue",  e);
 			e.printStackTrace();
 		}
 		
@@ -163,6 +163,7 @@ public class OutputDeviceController implements ActionListener, ChangeListener, F
 			
 			logger.debug("Slider name: " + s.getName() + ", value: " + value);
 			outDevPanel.setTxtOutputVolume(value);
+			
 			try {
 				
 				if(soundPlayer != null) {
@@ -171,13 +172,13 @@ public class OutputDeviceController implements ActionListener, ChangeListener, F
 				}
 				
 			} catch (LineUnavailableException e1) {
-				// FIXME Auto-generated catch block
+				logger.error("LineUnavailable.", e);
 				e1.printStackTrace();
 			}
 			
 		}
 		else {
-			logger.error("Unknown source " + e);
+			logger.error("Unknown source ", e);
 		}
 		
 	} // stateChanged(...)
@@ -370,7 +371,7 @@ public class OutputDeviceController implements ActionListener, ChangeListener, F
 				logger.trace("soundPlayer: {}, outputVolume: {}", soundPlayer, outputVolume);
 			
 		} catch (LineUnavailableException e) {
-			// FIXME Auto-generated catch block
+			logger.error("LineUnavailable.",  e);
 			e.printStackTrace();
 		}
 		

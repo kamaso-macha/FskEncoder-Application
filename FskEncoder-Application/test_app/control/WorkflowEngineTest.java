@@ -44,8 +44,12 @@ import javax.sound.sampled.Mixer.Info;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -55,6 +59,7 @@ import org.mockito.InOrder;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 
+import control.gui.CompileAndUploadAction;
 import control.gui.InputFileController;
 import control.gui.MainWindowController;
 import control.gui.OutputDeviceController;
@@ -77,6 +82,7 @@ import model.FskUploaderModel;
 import sound.EnlistOutputDevices;
 import sound.SoundPlayer;
 import sound.support.TestMixerInfo;
+import utility.TestAppender;
 import view.gui.EmptyExtensionGui;
 
 /**
@@ -99,12 +105,16 @@ import view.gui.EmptyExtensionGui;
 class WorkflowEngineTest {
 
 	private static Logger LOGGER = null;
+	private static TestAppender testAppender;
 	
 	private FskUploaderModel fskUploaderModelMock;
 	private ExtensionGui extensionGuiMock;
 	private StatusBarUpdate statusBarUpdateMock;
 	
+	private CompileAndUploadAction compileAndUploadActionMock;
 	private OutputDeviceController outputDeviceControllerMock;
+	private Protocol protocolMock;
+	private SoundPlayer soundPlayerMock;
 	
 	private InputReaderExtensionFactory inputReaderFactoryMock;
 	private ReaderExtensionControl readerExtensionControllerMock;
@@ -117,9 +127,6 @@ class WorkflowEngineTest {
 	private Reader readerMock;
 	private MainWindowController mainWindowControllerMock;
 
-	private Protocol protocolMock;
-
-	
 
 	/**
 	 * @throws java.lang.Exception
@@ -130,7 +137,18 @@ class WorkflowEngineTest {
 	    System.setProperty("log4j.configurationFile","./test-cfg/log4j2.xml");
 		LOGGER = LogManager.getLogger();
 		
-	}
+	    testAppender = new TestAppender("testAppender", null);
+	    testAppender.start();
+
+	    LoggerContext loggerContext = (LoggerContext) LogManager.getContext(false);
+	    Configuration configuration = loggerContext.getConfiguration();
+	    
+	    LoggerConfig rootLoggerConfig = configuration.getLoggerConfig("");
+	    rootLoggerConfig.addAppender(testAppender, Level.ALL, null);
+	    
+	    loggerContext.updateLoggers();
+		
+	} // setUpBeforeClass()
 
 
 	/**
@@ -150,6 +168,7 @@ class WorkflowEngineTest {
 		fskUploaderModelMock = mock(FskUploaderModel.class);
 		extensionGuiMock = mock(ExtensionGui.class);
 		
+		compileAndUploadActionMock = mock(CompileAndUploadAction.class);
 		outputDeviceControllerMock = mock(OutputDeviceController.class);
 		statusBarUpdateMock = mock(StatusBarUpdate.class);
 
@@ -170,6 +189,7 @@ class WorkflowEngineTest {
 		
 		
 		protocolMock = mock(Protocol.class);
+		soundPlayerMock = mock(SoundPlayer.class);
 		
 		targetSystemFactoryMock = mock(TargetSystemExtensionFactory.class);
 		targetSystemExtensionControllerMock = mock(TargetSystemExtensionControl.class);
@@ -397,6 +417,38 @@ class WorkflowEngineTest {
 
 
 	/**
+	 * Test method for {@link control.WorkflowEngine#registerCallback(control.gui.CompileAndUploadAction)}.
+	 */
+	@Test
+	final void testRegisterCallbackCompileAndUploadAction() {
+		LOGGER.info("testRegisterCallbackCompileAndUploadAction()");
+
+		IllegalArgumentException thrown;
+		
+		try(
+		
+			MockedConstruction<EnlistOutputDevices> mcEnlistOutputDevices = mockConstruction(EnlistOutputDevices.class);
+			
+		) {
+			
+			CompileAndUploadAction controllerMock = mock(CompileAndUploadAction.class);
+			
+			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
+			
+			thrown = assertThrows(IllegalArgumentException.class, () -> { 
+				cut.registerCallback((CompileAndUploadAction)null);
+			});
+			
+			assertEquals("aCompileAndUploadAction can't be null.", thrown.getMessage());
+			
+			assertDoesNotThrow(() -> { cut.registerCallback(controllerMock); });
+			
+		} // yrt
+		
+	} // testRegisterCallbackCompileAndUploadAction()
+
+
+	/**
 	 * Test method for {@link control.WorkflowEngine#registerCallback(control.gui.InputFileController)}.
 	 */
 	@Test
@@ -523,6 +575,41 @@ class WorkflowEngineTest {
 
 
 	/**
+	 * Test method for {@link control.WorkflowEngine#setOutputVolume()}.
+	 */
+	@Test
+	final void testSetOutputVolume() {
+		LOGGER.info("testSetOutputVolume()");
+
+		final int outputVolume = 42;
+		
+		try(
+				
+			MockedStatic<PlugInFactory> msPlugInFactory = mockStatic(PlugInFactory.class);
+				
+		){
+			
+			msPlugInFactory.when( () -> PlugInFactory.getTargetSystemExtensionFactory(any()) )
+				.thenReturn(targetSystemFactoryMock);
+
+			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
+			cut.registerCallback(mainWindowControllerMock);
+			
+			cut.setOutputVolume(outputVolume);
+			verify(fskUploaderModelMock, times(1)).setOutputVolume(outputVolume);
+			
+		}
+		catch (Exception e) {
+			
+			LOGGER.error("Unexpected exception caught: {}", e);
+			fail("Unexpected exception caught: " + e);
+		
+		} // yrt
+		
+	} // testSetOutputVolume()
+
+
+	/**
 	 * Test method for {@link control.WorkflowEngine#setReaderPlugin(java.lang.String)}.
 	 */
 	@Test
@@ -535,20 +622,42 @@ class WorkflowEngineTest {
 			
 			MockedStatic<PlugInFactory> msPlugInFactory = mockStatic(PlugInFactory.class);
 				
-		)
-		{
-		
-			// setup
-			msPlugInFactory.when( () -> PlugInFactory.getInputReaderExtensionFactory(any()) )
-			.thenReturn(inputReaderFactoryMock);
+		){
 		
 			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
 			cut.registerCallback(mainWindowControllerMock);
 			cut.registerCallback(statusBarUpdateMock);
 			
 			
+			// test factory == null
+			// setup
+			msPlugInFactory.when( () -> PlugInFactory.getInputReaderExtensionFactory(any()) )
+			.thenReturn(null);
+		
+			String referenceMessaage = "No reader plug-in set.";
+			
+            testAppender.clearList();
+            testAppender.setLogSource("control.WorkflowEngine");
+            testAppender.setLogLevel(Level.WARN);
+//            testAppender.setDebug(true);
+
+            cut.setReaderPlugin(TARGET_SYSTEM);
+
+			testAppender.dumpItems();
+
+			List<String> items = testAppender.getLogItems();
+
+    		assertEquals(1, items.size());
+    		assertEquals(items.get(0), referenceMessaage);
+			
+			
 			// test: IllegalArgumentException from factory
-			when(inputReaderFactoryMock.getInputReaderExtensions(any())).thenThrow(IllegalArgumentException.class);
+			reset(fskUploaderModelMock);
+
+    		msPlugInFactory.when( () -> PlugInFactory.getInputReaderExtensionFactory(any()) )
+			.thenReturn(inputReaderFactoryMock);
+
+    		when(inputReaderFactoryMock.getInputReaderExtensions(any())).thenThrow(IllegalArgumentException.class);
 			
 			cut.setReaderPlugin(TARGET_SYSTEM);
 			
@@ -593,26 +702,6 @@ class WorkflowEngineTest {
 			verify(readerExtensionControllerMock, times(1)).createLayout();
 			verify(mainWindowControllerMock, times(1)).setReaderExtensionPanel(extensionGuiMock);
 			
-			
-//			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
-//			cut.registerCallback(mainWindowControllerMock);
-//
-//			when(fskUploaderModelMock.getInputReaderProviderClassName(TARGET_SYSTEM)).thenReturn("tEST");
-//			
-//			msPlugInFactory.when( () -> PlugInFactory.getInputReaderExtensionFactory(any()) )
-//				.thenReturn(inputReaderFactoryMock);
-//			
-//			when(inputReaderFactoryMock.getInputReaderExtensions(cut)).thenReturn(inputReaderExtensionDao);
-//			
-//			when(readerExtensionControllerMock.createLayout()).thenReturn(extensionGuiMock);
-//			
-//			// test
-//			cut.setReaderPlugin(TARGET_SYSTEM);
-//			
-//			verify(fskUploaderModelMock, times(1)).getInputReaderProviderClassName(TARGET_SYSTEM);
-//			verify(readerExtensionControllerMock, times(1)).initialize(inputReaderExtensionDao, cut);
-//			verify(readerExtensionControllerMock, times(1)).createLayout();
-//			verify(mainWindowControllerMock, times(1)).setReaderExtensionPanel(extensionGuiMock);
 			
 		} // yrt
 		catch (Exception e) {
@@ -721,20 +810,43 @@ class WorkflowEngineTest {
 				
 			MockedStatic<PlugInFactory> msPlugInFactory = mockStatic(PlugInFactory.class);
 				
-		)
-		{
-		
-			// setup
-			msPlugInFactory.when( () -> PlugInFactory.getTargetSystemExtensionFactory(any()) )
-			.thenReturn(targetSystemFactoryMock);
+		){
 		
 			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
 			cut.registerCallback(mainWindowControllerMock);
 			cut.registerCallback(statusBarUpdateMock);
 			
 			
+			// test factory == null
+			// setup
+			msPlugInFactory.when( () -> PlugInFactory.getTargetSystemExtensionFactory(any()) )
+			.thenReturn(null);
+			
+			String referenceMessaage = "No target system plug-in set.";
+		
+            testAppender.clearList();
+            testAppender.setLogSource("control.WorkflowEngine");
+            testAppender.setLogLevel(Level.WARN);
+//            testAppender.setDebug(true);
+
+            cut.setTargetPlugin(TARGET_SYSTEM);
+
+			testAppender.dumpItems();
+
+			List<String> items = testAppender.getLogItems();
+
+    		assertEquals(1, items.size());
+    		assertEquals(items.get(0), referenceMessaage);
+			
+    		
 			// test: exception from factory
+			reset(fskUploaderModelMock);
+
+    		msPlugInFactory.when( () -> PlugInFactory.getTargetSystemExtensionFactory(any()) )
+			.thenReturn(targetSystemFactoryMock);
+
 			when(targetSystemFactoryMock.getTargetSystemExtension((StatusMessenger)cut)).thenThrow(IllegalArgumentException.class);
+
 			cut.setTargetPlugin(TARGET_SYSTEM);
 			
 			verify(fskUploaderModelMock, times(1)).getTargetSystemProviderClassName(TARGET_SYSTEM);
@@ -777,32 +889,27 @@ class WorkflowEngineTest {
 		LOGGER.info("testSetTargetSystem()");
 
 		/*
-		 * needs
-		 * 	setReaderPlugin
-		 * 	setTargetPlugin
+		 * There are TWO methods:
 		 * 
-		 * 	outputDeviceSelectionCallback
-		 * 	setStatusMessage()
-		 *  mainWindowCallback
-		 */
-
-		/*
-		 * Needs 
+		 * public void setTargetSystem()
+		 * public void setTargetSystem(String aName)
 		 */
 		
 		final String TARGET_SYSTEM = "Test";
+		final String NOT_DEFINED = WorkflowEngine.NOT_DEFINED;
+		
 		InOrder fskUploaderModelOrder;
 		
 		try(
 			
 			MockedStatic<PlugInFactory> msPlugInFactory = mockStatic(PlugInFactory.class);
 				
-		)
-		{
+		){
 		
-			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
-			cut.registerCallback(mainWindowControllerMock);
-			cut.registerCallback(statusBarUpdateMock);
+			WorkflowEngine spyedCut = spy(new WorkflowEngine(fskUploaderModelMock));
+			
+			spyedCut.registerCallback(mainWindowControllerMock);
+			spyedCut.registerCallback(statusBarUpdateMock);
 
 			msPlugInFactory.when( () -> PlugInFactory.getInputReaderExtensionFactory(any()) )
 				.thenReturn(inputReaderFactoryMock);
@@ -810,50 +917,52 @@ class WorkflowEngineTest {
 			msPlugInFactory.when( () -> PlugInFactory.getTargetSystemExtensionFactory(any()) )
 			.thenReturn(targetSystemFactoryMock);
 
-			when(inputReaderFactoryMock.getInputReaderExtensions(cut)).thenReturn(inputReaderExtensionDao);	
-			when(targetSystemFactoryMock.getTargetSystemExtension((StatusMessenger)cut)).thenReturn(targetSystemExtensionDao);
+			when(inputReaderFactoryMock.getInputReaderExtensions(spyedCut)).thenReturn(inputReaderExtensionDao);	
+			when(targetSystemFactoryMock.getTargetSystemExtension((StatusMessenger)spyedCut)).thenReturn(targetSystemExtensionDao);
 			
 			when(readerExtensionControllerMock.createLayout()).thenReturn(extensionGuiMock);	
 			when(targetSystemExtensionControllerMock.createLayout()).thenReturn(extensionGuiMock);
 			
 			// test: No name, NO default name
-			when(fskUploaderModelMock.getTargetSystemName()).thenReturn(WorkflowEngine.NOT_DEFINED);
-
-			cut.setTargetSystem(null);
+			spyedCut.setTargetSystem();
+			
 			verify(fskUploaderModelMock, times(1)).getTargetSystemName();
-			verify(fskUploaderModelMock, never()).getInputReaderProviderClassName(TARGET_SYSTEM);
-			verify(fskUploaderModelMock, never()).getTargetSystemProviderClassName(TARGET_SYSTEM);
-			verify(statusBarUpdateMock, never()).setStatusMessage("");
-			verify(mainWindowControllerMock, times(1)).setTitle();
-			
-			
-			// test: No name, BUT default name & NO outputDeviceCallback
-			reset(fskUploaderModelMock);
-			reset(mainWindowControllerMock);
-			reset(statusBarUpdateMock);
-			fskUploaderModelOrder = inOrder(fskUploaderModelMock);
-			
-			when(fskUploaderModelMock.getTargetSystemName()).thenReturn(TARGET_SYSTEM);
-
-			cut.setTargetSystem(null);
-
-			fskUploaderModelOrder.verify(fskUploaderModelMock, times(1)).getTargetSystemName();
-			fskUploaderModelOrder.verify(fskUploaderModelMock, times(1)).getInputReaderProviderClassName(TARGET_SYSTEM);
-			fskUploaderModelOrder.verify(fskUploaderModelMock, times(1)).getTargetSystemProviderClassName(TARGET_SYSTEM);
+			verify(fskUploaderModelMock, times(1)).getInputReaderProviderClassName(NOT_DEFINED);
+			verify(fskUploaderModelMock, times(1)).getTargetSystemProviderClassName(NOT_DEFINED);
 			verify(statusBarUpdateMock, times(1)).setStatusMessage("");
 			verify(mainWindowControllerMock, times(1)).setTitle();
-
-		
-			// test: BUT name, IGNORE default name & BUT outputDeviceCallback
+			verify(compileAndUploadActionMock, never()).setProtocol(any(Protocol.class));
+			verify(compileAndUploadActionMock, never()).setSoundPlayer(any(SoundPlayer.class));
+			
+			
+			// test: No name, BUT getTargetSystemName provides a default value & NO outputDeviceCallback
 			reset(fskUploaderModelMock);
 			reset(mainWindowControllerMock);
 			reset(statusBarUpdateMock);
 			fskUploaderModelOrder = inOrder(fskUploaderModelMock);
 			
-			when(fskUploaderModelMock.getTargetSystemName()).thenReturn(TARGET_SYSTEM);
+			doReturn(targetSystemExtensionDao.PROTOCOL).when(spyedCut).getProtocol();
+			doReturn(outputDeviceControllerMock.getSoundPlayer()).when(spyedCut).getSoundPlayer();
+			
+			spyedCut.registerCallback(compileAndUploadActionMock);
+			spyedCut.setTargetSystem(null);
 
-			cut.registerCallback(outputDeviceControllerMock);
-			cut.setTargetSystem(TARGET_SYSTEM);
+			fskUploaderModelOrder.verify(fskUploaderModelMock, never()).getTargetSystemName();
+			fskUploaderModelOrder.verify(fskUploaderModelMock, times(1)).getInputReaderProviderClassName(NOT_DEFINED);
+			fskUploaderModelOrder.verify(fskUploaderModelMock, times(1)).getTargetSystemProviderClassName(NOT_DEFINED);
+			verify(statusBarUpdateMock, times(1)).setStatusMessage("");
+			verify(mainWindowControllerMock, times(1)).setTitle();
+//			verify(compileAndUploadActionMock, times(1)).setProtocol(any(Protocol.class));
+//			verify(compileAndUploadActionMock, times(1)).setSoundPlayer(any(SoundPlayer.class));
+
+			// test: Have name, IGNORE default name & have outputDeviceCallback
+			reset(fskUploaderModelMock);
+			reset(mainWindowControllerMock);
+			reset(statusBarUpdateMock);
+			fskUploaderModelOrder = inOrder(fskUploaderModelMock);
+
+			spyedCut.registerCallback(outputDeviceControllerMock);
+			spyedCut.setTargetSystem(TARGET_SYSTEM);
 
 			verify(fskUploaderModelMock, never()).getTargetSystemName();
 			fskUploaderModelOrder.verify(fskUploaderModelMock, times(1)).setTargetSystemName(TARGET_SYSTEM);
@@ -863,12 +972,13 @@ class WorkflowEngineTest {
 			verify(statusBarUpdateMock, times(1)).setStatusMessage("");
 			verify(mainWindowControllerMock, times(1)).setTitle();
 
-		} // yrt
+		}
 		catch (Exception e) {
 			
 			LOGGER.error("Unexpected exception caught: {}", e);
 			fail("Unexpected exception caught: " + e);
-		}
+			
+		} // yrt
 		
 	} // testSetTargetSystem()
 
@@ -1049,6 +1159,44 @@ class WorkflowEngineTest {
 		}
 		
 	} // testGetTargetGui()
+
+
+	/**
+	 * Test method for {@link control.WorkflowEngine#getOutputVolume()}.
+	 */
+	@Test
+	final void testGetOutputVolume() {
+		LOGGER.info("testGetOutputVolume()");
+
+		final int outputVolume = 42;
+		
+		try(
+				
+			MockedStatic<PlugInFactory> msPlugInFactory = mockStatic(PlugInFactory.class);
+				
+		){
+			
+			msPlugInFactory.when( () -> PlugInFactory.getTargetSystemExtensionFactory(any()) )
+				.thenReturn(targetSystemFactoryMock);
+
+			WorkflowEngine cut = new WorkflowEngine(fskUploaderModelMock);
+			cut.registerCallback(mainWindowControllerMock);
+			
+			when(fskUploaderModelMock.getOutputVolume()).thenReturn(outputVolume);
+				
+			int result = cut.getOutputVolume();
+			
+			assertEquals(outputVolume, result);
+			
+		}
+		catch (Exception e) {
+			
+			LOGGER.error("Unexpected exception caught: {}", e);
+			fail("Unexpected exception caught: " + e);
+		
+		} // yrt
+		
+	} // testGetOutputVolume()
 
 
 	/**

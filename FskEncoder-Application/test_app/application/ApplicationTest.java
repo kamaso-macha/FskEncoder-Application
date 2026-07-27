@@ -241,7 +241,7 @@ class ApplicationTest {
 			mwcSequence.verify(mainWindowControllerMock, times(1)).getMainWindow();
 			mwcSequence.verify(mainWindowControllerMock, times(1)).getMainPanel();
 			
-			wfeSequence.verify(workflowEngineMock, times(1)).setTargetSystem(null);
+			wfeSequence.verify(workflowEngineMock, times(1)).setTargetSystem();
 		
 			mwcSequence.verify(mainWindowControllerMock, times(1)).setTitle();
 		

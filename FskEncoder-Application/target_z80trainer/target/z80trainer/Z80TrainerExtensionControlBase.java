@@ -96,7 +96,7 @@ public abstract class Z80TrainerExtensionControlBase  extends TargetSystemExtens
 		/*
 		 * Default value
 		 */
-		gui.setTxtProgrammNumberText(DEFAULT_PROGRAM_NUMBER);
+		gui.setTxtProgramNumberText(DEFAULT_PROGRAM_NUMBER);
 		
 	} // Z80TrainerExtensionControl()
 	
@@ -113,7 +113,7 @@ public abstract class Z80TrainerExtensionControlBase  extends TargetSystemExtens
 		logger.trace("createLayout()");
 		
 		JPanel panel = gui.createLayout();
-		gui.setTxtProgrammNumberText(DEFAULT_PROGRAM_NUMBER);
+		gui.setTxtProgramNumberText(DEFAULT_PROGRAM_NUMBER);
 		
 		return panel;
 		

@@ -87,7 +87,7 @@ public class Z80TrainerMonitorExtensionControl  extends Z80TrainerExtensionContr
 	public void setProgramNumber() {
 		logger.trace("setProgramNumber()");
 		
-		String txtProgramNumber = gui.getTxtProgrammNumberText().replaceAll("^0x", ""); 
+		String txtProgramNumber = gui.getTxtProgramNumberText().replaceAll("^0x", ""); 
 		logger.trace("txtProgramNumber = {}", txtProgramNumber);
 		
 		int programNumber = Integer.parseInt(txtProgramNumber, 16);

@@ -1,0 +1,69 @@
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+
+import test.utility.TestAppender;
+
+
+// -------------------------------------------------------------
+
+
+	private static Logger logger = LoggerFactory.getLogger(USB_I2C_BridgeImplTest.class);
+
+	private static TestAppender testAppender;
+
+
+// -------------------------------------------------------------
+
+
+	static void setUpBeforeClass() throws Exception {
+
+		logger.info("setUpBeforeClass()");
+		
+	    testAppender = new TestAppender("testAppender", null);
+	    testAppender.start();
+
+	    LoggerContext loggerContext = (LoggerContext) LogManager.getContext(false);
+	    Configuration configuration = loggerContext.getConfiguration();
+	    
+	    LoggerConfig rootLoggerConfig = configuration.getLoggerConfig("");
+	    rootLoggerConfig.addAppender(testAppender, Level.ALL, null);
+	    
+	    loggerContext.updateLoggers();
+		
+	} // setUpBeforeClass()
+
+
+// -------------------------------------------------------------
+
+		String referenceString = 
+				  "PololuDeviceInfo ["
+				+ "size: 0x1C / 28, "
+				+ "version: 0, "
+				+ "USB vendor ID: 0x1FFB, "
+				+ "USB product ID: 0x2502, "
+				+ "FW version: 1.2, "
+				+ "modifications: -, "
+				+ "uid: 52 00 76 00 01 50 36 42 48 37 30 20"
+				+ "]"
+				;
+
+
+            testAppender.clearList();
+            testAppender.setLogSource("USB_I2C_BridgeImpl.checkForErrors");
+            testAppender.setLogLevel(Level.ERROR);
+//            testAppender.setDebug(true);
+
+
+            testAppender.dumpItems();
+            
+    		List<String> items = testAppender.getLogItems();
+
+    		assertEquals(1, items.size());
+    		assertEquals(items.get(0), referenceString);
+
+// -------------------------------------------------------------
+
+

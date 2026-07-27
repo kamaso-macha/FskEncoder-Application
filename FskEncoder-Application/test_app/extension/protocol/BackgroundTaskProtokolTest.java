@@ -341,7 +341,7 @@ class BackgroundTaskProtokolTest {
 		assertEquals(
 				"BackgroundTaskProtokol [checksumCalculator=null, encoder=null, " 
 			      + "dataBuffer=null, soundsampleBuffer=null, soundSampleBufferSize=0, " 
-			      + "isRunning=false, currentProgress=0, " 
+			      + "fullProgress=0, currentProgress=0, " 
 			      + "BackgroundTask [backgroundExecutor=null, isRunning=false]]",
 			
 			cut.toString())

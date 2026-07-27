@@ -177,7 +177,6 @@ public class Ihx8ReaderControl extends ReaderExtensionControl {
 	/**
 	 * @return
 	 */
-	// FIXME: Refactor Ihx8ReaderExtension to remove this method.
 	public ExtensionGui getGui() {
 		logger.trace("getGui()");
 		

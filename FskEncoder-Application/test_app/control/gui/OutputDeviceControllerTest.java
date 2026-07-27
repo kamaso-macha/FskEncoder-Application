@@ -384,7 +384,7 @@ class OutputDeviceControllerTest {
 			try {
 				verify(spMock, times(1)).setOutputGain(outputVolume);
 			} catch (LineUnavailableException e) {
-				// TODO Auto-generated catch block
+				LOGGER.error("LineUnavailable.",  e);
 				e.printStackTrace();
 			}
 			

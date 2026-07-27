@@ -181,7 +181,7 @@ class FskUploaderModelTest {
 			verify(extensionPropertiesMock, times(2)).load(any(Reader.class));
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			LOGGER.error("IOException.",  e);
 			e.printStackTrace();
 		}
 		

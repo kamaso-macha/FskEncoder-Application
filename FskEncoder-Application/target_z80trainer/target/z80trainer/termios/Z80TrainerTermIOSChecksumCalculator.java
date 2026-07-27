@@ -77,21 +77,23 @@ public class Z80TrainerTermIOSChecksumCalculator extends ChecksumCalculator {
 	 */
 	@Override
 	public void sumUp(int aValue) {
+		logger.trace("me: {}", this);
 		
 		if(aValue <= 0x00FF) {
 			chkSum += aValue;
+			logger.debug(String.format("aValue: 0x%04X, chkSum: 0x%04X", aValue, chkSum));
 		}
 		else {
-			byte loByte = (byte)(aValue & 0x00FF);
+			int loByte = (aValue & 0x00FF);
 			chkSum += loByte; 
+			logger.debug(String.format("aValue: 0x%04X, loByte: 0x%04X chkSum: 0x%04X", aValue, loByte, chkSum));
 			
-			byte hiByte = (byte)((aValue >> 8) & 0x00FF);
+			int hiByte = ((aValue >> 8) & 0x00FF);
 			chkSum += hiByte;
+			logger.debug(String.format("aValue: 0x%04X, hiByte: 0x%04X chkSum: 0x%04X", aValue, hiByte, chkSum));
 			
 		}
-		
-		logger.debug(String.format("aValue: 0x%04X, chkSum: 0x%04X", aValue, chkSum));
-		
+				
 		isInitialized = true;
 		
 	} // sumUp()

@@ -10,6 +10,7 @@
 	<property name="dir.scriptsRepo"	value="${dir.defaultsRepo}/${targetName}/scripts" />
 	<property name="dir.configRepo"		value="${dir.defaultsRepo}/${targetName}/cfg" />
 	<property name="dir.classesRoot"	value="${dir.projectRoot}/target/classes" />
+	<property name="dir.sourcessRoot"	value="${dir.projectRoot}/application/extension" />
 
 	
 	<buildnumber file="${dir.defaultsRepo}/${targetName}/build.number"/>
@@ -53,7 +54,7 @@
 	</target>
 	
 
-	<target name="Create Jar">
+	<target name="Create Jar" depends="Create Extension Development Jar">
 		
 		<echo message="release: ${release}" />
 		
@@ -80,6 +81,47 @@
 		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-api/2.11.2/"	fileName="log4j-api-2.11.2.jar"/>
 		<replaceLibrary sourcepath="${dir.mavenRepo}/org/apache/logging/log4j/log4j-core/2.11.2/"	fileName="log4j-core-2.11.2.jar"/>
 		<replaceLibrary sourcepath="${dir.mavenRepo}/args4j/args4j/2.37/"							fileName="args4j-2.37.jar"/>
+
+	</target>
+	
+	
+	<target name="Create Extension Development Jar">
+		
+		<echo message="release: ${release}" />
+		
+		<!-- classes -->
+		<mkManifest 
+			location="${dir.defaultsRepo}/Dev-${targetName}" 
+			version="${release}" 
+			timestamp="${current.time}" 
+		/>
+		
+		<delete file="${dir.dist.bin}/Dev-${targetName}.jar" failonerror="no" />
+		
+        <jar destfile="${dir.dist.dev}/Dev-${targetName}.jar"
+			basedir="${dir.classesRoot}"
+			includes="extension/**/*"
+			manifest="${dir.defaultsRepo}/${targetName}/MANIFEST.MF"
+    		>
+        	
+        </jar>
+
+		<!-- sources -->
+		<mkManifest 
+			location="${dir.defaultsRepo}/Dev-${targetName}-Sources" 
+			version="${release}" 
+			timestamp="${current.time}" 
+		/>
+		
+		<delete file="${dir.dist.bin}/Dev-${targetName}-Sources.jar" failonerror="no" />
+		
+        <jar destfile="${dir.dist.dev}/Dev-${targetName}-Sources.jar"
+			basedir="${dir.sourcessRoot}"
+			includes="extension/**/*"
+			manifest="${dir.defaultsRepo}/Dev-${targetName}-Sources/MANIFEST.MF"
+    		>
+        	
+        </jar>
 
 	</target>
 	

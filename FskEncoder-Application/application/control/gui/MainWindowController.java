@@ -214,4 +214,16 @@ public class MainWindowController implements ActionListener{
 	} // getAutosaveFlag()
 
 
+	/**
+	 * @param inactive
+	 */
+	public void setGuiState(GuiState inactive) {
+		logger.error("setGuiState(): Don't know how!");
+
+		
+		// TODO Auto-generated method stub
+		
+	} // setGuiState(
+
+
 } // ssalc

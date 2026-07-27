@@ -157,7 +157,12 @@ public abstract class ChecksumCalculator {
 	/**
 	 * set the checksum to 0.
 	 */
-	public void clear() { chkSum = 0; }
+	public void clear() { 
+		logger.trace("clear()");
+		
+		chkSum = 0;
+		
+	} // clear()
 
 
     /**
@@ -165,10 +170,10 @@ public abstract class ChecksumCalculator {
      *
      * @return  A summary string
      */
-	@Override
-	public String toString() {
-		return "ChecksumCalculator [mask=" + mask + ", chkSum=" + chkSum + ", isInitialized=" + isInitialized + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "ChecksumCalculator [mask=" + mask + ", chkSum=" + chkSum + ", isInitialized=" + isInitialized + "]";
+//	}
 	
 
 } // ChecksumCalculator

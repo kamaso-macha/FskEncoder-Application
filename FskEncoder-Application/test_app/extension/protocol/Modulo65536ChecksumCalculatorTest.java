@@ -2,10 +2,10 @@
  *
  * **********************************************************************
  * PROJECT       : FskEncoder
- * FILENAME      : BinMemoryRegionBuilderTest.java
+ * FILENAME      : Modulo65536ChecksumCalculatorTest.java
  *
  * More information about this project can be found on Github
- * http://github.com/kamaso-macha/FskEncoder-Extensions
+ * http://github.com/kamaso-macha/FskEncoder
  *
  * **********************************************************************
  *
@@ -28,7 +28,7 @@
  */
 
 
-package source.bin;
+package extension.protocol;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,8 +39,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import extension.model.MemoryMap;
 
 /**
  * Responsibilities:<br>
@@ -60,20 +58,22 @@ import extension.model.MemoryMap;
  */
 
 // DOC
-// Created at 2025-11-02 18:22:34
+// Created at 2026-07-27 11:13:09
 
-class BinMemoryRegionBuilderTest {
+class Modulo65536ChecksumCalculatorTest {
 
 	private static Logger LOGGER = null;
-
 	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
 		System.setProperty("log4j.configurationFile","./test-cfg/log4j2.xml");
 		LOGGER = LogManager.getLogger();
+		
 	}
 
 	/**
@@ -98,42 +98,55 @@ class BinMemoryRegionBuilderTest {
 	}
 
 	/**
-	 * Test method for {@link source.bin.BinMemoryRegionBuilder#append(extension.source.DataRecord)}.
+	 * Test method for {@link extension.protocol.Modulo65536ChecksumCalculator#sumUp(int)}.
 	 */
 	@Test
-	final void testAppend() {
-		LOGGER.info("testAppend()");
+	public void testSumUp_CorrectMasking() {
+		LOGGER.info("testSumUp_CorrectMasking()");
 		
-		byte[] data = new byte[] { (byte) 0xaa };
+		Modulo65536ChecksumCalculator cut = new Modulo65536ChecksumCalculator();
 		
 		try {
 			
-			BinRecord record = new BinRecord(0, data);
-			MemoryMap memoryMap = new MemoryMap();
+			// Mask == 0x00_FFFF for word value
 			
-			BinMemoryRegionBuilder cut = new BinMemoryRegionBuilder(memoryMap);
+			// 0x00_1234 & 0x00_FFFF = 0x00_1234
+			cut.sumUp(0x01234);
+			assertTrue(0x01234 == cut.getCheckSum());
 			
-			cut.append(record);
 			
-			LOGGER.info("cut: {}",cut.toString());
+			// 0x00_9876 & 0x00_FFFF = 0x00_9876
+			// 0x00_9876 + 0x00_9876 = 0x01_30EC
+			// 0x01_30EC & 0x00_FFFF = 0x00_30EC
+			cut.clear();
+
+			cut.sumUp(0x009876);
+			cut.sumUp(0x009876);
 			
-		} catch (Exception e) {
-			LOGGER.error("Exception.",  e);
-			e.printStackTrace();
+			assertTrue(0x0030EC == cut.getCheckSum());
+			
+		} catch (IllegalAccessException e) {
+			fail("Unexpected Exception caught!");
 		}
 		
-	} // testAppend()
+	} // testSumUp()
+	
 
 	/**
-	 * Test method for {@link source.bin.BinMemoryRegionBuilder#BinMemoryRegionBuilder(extension.model.ExtendableMemory)}.
+	 * Test method for {@link fskencoder.ChecksumCalculator#getCheckSum()}.
 	 */
 	@Test
-	final void testBinMemoryRegionBuilder() {
-		LOGGER.info("testBinMemoryRegionBuilder()");
+	public void testGetCheckSum() {
+		LOGGER.info("testGetCheckSum()");
 		
-		fail("Not implemented yet");
-
-	} // testBinMemoryRegionBuilder()
+		
+		/*
+		 * This method is tested implicitly on the sumUp() methods.
+		 */
+		
+		assertTrue(true);
+		
+	} // testGetCheckSum()
 
 	
-} //ssalc
+} // ssalc

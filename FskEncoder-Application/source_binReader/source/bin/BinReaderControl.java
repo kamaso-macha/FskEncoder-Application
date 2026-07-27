@@ -177,7 +177,6 @@ public class BinReaderControl extends ReaderExtensionControl implements ChangeLi
 	/**
 	 * @return
 	 */
-	// FIXME: Refactor Ihx8ReaderExtension to remove this method.
 	public ExtensionGui getGui() {
 		logger.trace("getGui()");
 		
