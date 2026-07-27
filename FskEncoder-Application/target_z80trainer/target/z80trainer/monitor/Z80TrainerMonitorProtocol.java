@@ -366,7 +366,8 @@ public class Z80TrainerMonitorProtocol extends Z80TrainerProtocolBase {
 	@Override
 	public String toString() {
 		
-		return "Z80TrainerMonitorProtocol [" + super.toString() + "]";
+		return "Z80TrainerMonitorProtocol [programNbr=" + programNbr 
+			+ ", " + super.toString() + "]";
 		
 	}// toString()
 
@@ -381,7 +382,7 @@ public class Z80TrainerMonitorProtocol extends Z80TrainerProtocolBase {
 		+ LEAD_IN				* 1	
 		+ MEASURE_0				* 1
 		+ MEASURE_1				* 1
-		+ PRG_NBR_SIZE				* 2		// word
+		+ PRG_NBR_SIZE			* 2		// word
 		+ START_ADR				* 2		// word
 		+ START_ADR_CKS			* 1		// bytes
 		+ BLK_LEN				* 2		// word

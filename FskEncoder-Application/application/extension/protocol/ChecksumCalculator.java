@@ -170,10 +170,10 @@ public abstract class ChecksumCalculator {
      *
      * @return  A summary string
      */
-//	@Override
-//	public String toString() {
-//		return "ChecksumCalculator [mask=" + mask + ", chkSum=" + chkSum + ", isInitialized=" + isInitialized + "]";
-//	}
+	@Override
+	public String toString() {
+		return "ChecksumCalculator [mask=" + mask + ", chkSum=" + chkSum + ", isInitialized=" + isInitialized + "]";
+	}
 	
 
 } // ChecksumCalculator
